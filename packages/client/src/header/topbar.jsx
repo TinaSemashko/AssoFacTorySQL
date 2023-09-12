@@ -19,7 +19,7 @@ import * as S from "./topbar.styled";
 
 
 
-const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE et YOGA"];
+const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE ET YOGA"];
 
 
 const drawerWidth = "30%";
