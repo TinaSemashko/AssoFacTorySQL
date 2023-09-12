@@ -28,7 +28,11 @@ const menuItemsArray = [
   "KINE et YOGA",
 ];
 
-const drawerWidth = "50%";
+
+const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE ET YOGA"];
+
+
+const drawerWidth = "30%";
 
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
