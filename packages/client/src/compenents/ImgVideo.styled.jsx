@@ -1,14 +1,25 @@
 import { styled } from "@mui/material/styles";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b18f12fa (accueil)
 export const MainContainer = styled("div")`
   .image {
     position: relative;
     height: 100vh;
   }
+<<<<<<< HEAD
   /* .video {
     width: 100%;
     margin-bottom: -1rem;
   } */
+=======
+  .video {
+    width: 100%;
+    margin-bottom: -1rem;
+  }
+>>>>>>> b18f12fa (accueil)
 
   .content {
     display: flex;
@@ -18,6 +29,7 @@ export const MainContainer = styled("div")`
     height: 100vh;
     width: 100%;
   }
+<<<<<<< HEAD
   .content div.video-txt-assofactory {
     background-color: #ff0000;
     text-transform: uppercase;
@@ -102,3 +114,16 @@ export const GridContainer = styled("div")`
     mix-blend-mode: difference;
   }
 `;
+=======
+
+  .content span.img-txt {
+    background-color: #333;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+    z-index: 100;
+  }
+`;
+>>>>>>> b18f12fa (accueil)
