@@ -23,6 +23,7 @@ export const MainContainer = styled("div")`
     text-transform: uppercase;
     color: #de9a5a;
     mix-blend-mode: hard-light;
+    letter-spacing: 30px;
   }
 
   .content span.img-txt-strip {
@@ -31,7 +32,7 @@ export const MainContainer = styled("div")`
     color: black;
     padding: 1rem;
     font-size: 1.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 30px;
     z-index: 100;
     mix-blend-mode: difference;
   }
@@ -41,7 +42,7 @@ export const MainContainer = styled("div")`
     color: #de9a5a;
     padding: 1rem;
     font-size: 1.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 30px;
     z-index: 100;
     mix-blend-mode: difference;
   }
@@ -52,7 +53,7 @@ export const MainContainer = styled("div")`
     color: #de9a5a;
     padding: 1rem;
     font-size: 1.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 30px;
     z-index: 100;
     mix-blend-mode: difference;
   }
@@ -63,7 +64,7 @@ export const MainContainer = styled("div")`
     color: #de9a5a;
     padding: 1rem;
     font-size: 1.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 30px;
     z-index: 100;
     mix-blend-mode: difference;
   }
@@ -96,7 +97,7 @@ export const GridContainer = styled("div")`
     color: #de9a5a;
     padding: 1rem;
     font-size: 1.5rem;
-    letter-spacing: 10px;
+    letter-spacing: 50px;
     z-index: 100;
     mix-blend-mode: difference;
   }
