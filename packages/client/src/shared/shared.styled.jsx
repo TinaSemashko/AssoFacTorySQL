@@ -8,3 +8,11 @@ export const BackGroundGradientMain = styled("div")`
     ${({ theme }) => theme.palette.colorBrown.main} 100%
   );
 `;
+
+export const BackGroundGradientLogo = styled("div")`
+  background: linear-gradient(
+    180deg,
+    ${({ theme }) => theme.palette.colorOrange04624.main} 43.23%,
+    ${({ theme }) => theme.palette.colorWhite.main} 100%
+  );
+`;

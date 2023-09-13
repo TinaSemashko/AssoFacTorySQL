@@ -1,14 +1,18 @@
+import Typography from "@mui/material/Typography";
 import VideoAccueil from "../videos/VideoAccueil.mp4";
+import * as S from "./ImgVideo.styled";
+import { BackGroundGradientLogo } from "../shared/shared.styled.jsx";
 
 const VideoOne = () => (
-  <div>
-    {/* <Parallax className="video"> */}
-    <video className="video" src={VideoAccueil} autoPlay loop muted />
+  <S.GridContainer>
+    <video src={VideoAccueil} autoPlay loop muted />
+
     <div className="content">
-      <span className="img-txt">AssoFacTory</span>
+      <BackGroundGradientLogo>
+        <Typography className="img-txt-video">AssoFacTory</Typography>
+      </BackGroundGradientLogo>
     </div>
-  </div>
-  // </Parallax>
+  </S.GridContainer>
 );
 
 export default VideoOne;

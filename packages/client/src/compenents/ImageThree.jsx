@@ -4,7 +4,7 @@ import StrongManAccueil from "../images/StrongManAccueil.jpg";
 const ImageThree = () => (
   <Parallax className="image" bgImage={StrongManAccueil} strength={800}>
     <div className="content">
-      <span className="img-txt">Plateau</span>
+      <span className="img-txt-plateau">Plateau</span>
     </div>
   </Parallax>
 );
