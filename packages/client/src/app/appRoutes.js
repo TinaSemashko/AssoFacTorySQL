@@ -5,7 +5,11 @@ import NotFound from "../pages/notFound/notFound";
 
 const Home = lazy(() => import("../pages/home/accueil"));
 const Blog = lazy(() => import("../pages/blog/blog"));
+<<<<<<< HEAD
 const Inscription = lazy(() => import("../pages/inscription/inscription"));
+=======
+const Inscription = lazy(() => import("../pages/inscription/inscription.jsx"));
+>>>>>>> 70145443 (install inscription)
 
 export const AppRoutes = () => {
   return (

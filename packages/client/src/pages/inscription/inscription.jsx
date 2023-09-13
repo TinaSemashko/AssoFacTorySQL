@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import * as S from "./inscription.styled";
+<<<<<<< HEAD
 import videoInscription from "../../videos/videoInscription.mp4";
+=======
+// import fdinscription from "../image/fdinscription.jpg";
+>>>>>>> 70145443 (install inscription)
 import Grid from "@mui/system/Unstable_Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
@@ -52,9 +56,13 @@ export default function Inscription() {
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={0} columnSpacing={0}>
           <Grid xs={12} md={6}>
+<<<<<<< HEAD
             <S.Item>
               <video src={videoInscription} autoPlay loop muted />
             </S.Item>
+=======
+            <S.Item>{/* <S.Img src={fdinscription} /> */}</S.Item>
+>>>>>>> 70145443 (install inscription)
           </Grid>
           <Grid xs={12} md={6}>
             <S.Item>
@@ -307,7 +315,11 @@ export default function Inscription() {
                     style={{
                       cursor: "pointer",
                     }}
+<<<<<<< HEAD
                     // onClick={() => navigate("/inscription")}
+=======
+                    onClick={() => navigate("/inscription")}
+>>>>>>> 70145443 (install inscription)
                   >
                     Connectez-vous
                   </u>

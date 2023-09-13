@@ -19,13 +19,19 @@ export const Container = styled("div")`
 
 export const Item = styled("div")`
   text-align: "center";
+<<<<<<< HEAD
   
+=======
+>>>>>>> 70145443 (install inscription)
 
   .gridItem {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
+<<<<<<< HEAD
     
+=======
+>>>>>>> 70145443 (install inscription)
   }
 
   @media (max-width: 750px) {
