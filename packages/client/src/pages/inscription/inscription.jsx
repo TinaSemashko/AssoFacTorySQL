@@ -326,10 +326,14 @@ export default function Inscription() {
                       cursor: "pointer",
                     }}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // onClick={() => navigate("/inscription")}
 =======
                     onClick={() => navigate("/inscription")}
 >>>>>>> 70145443 (install inscription)
+=======
+                    // onClick={() => navigate("/inscription")}
+>>>>>>> 087027e7 (modif route)
                   >
                     Connectez-vous
                   </u>
