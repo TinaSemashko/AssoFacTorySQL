@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as S from "./inscription.styled";
 import videoInscription from "../../videos/videoInscription.mp4";
 import Grid from "@mui/system/Unstable_Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -16,6 +15,8 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+import * as S from "./inscription.styled";
 
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
@@ -308,7 +309,7 @@ export default function Inscription() {
                   </S.FlexContainer>
                 </Box>
                 <S.Inscrivez>
-                  Déja Inscrit ?{" "}
+                  Déja Inscrit ?
                   <u
                     style={{
                       cursor: "pointer",
