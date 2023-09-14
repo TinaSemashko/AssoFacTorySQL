@@ -21,8 +21,8 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get("/user", getProfile(userModel));
-// router.get("/users", getAllUsers(userModel));
+router.get("/user", getProfile(userModel));
+router.get("/users", getAllUsers(userModel));
 // router.put("/abonnement", updateUserAbonnement(userModel));
 // router.post("/create", createNewUser(userModel));
 
