@@ -307,7 +307,7 @@ export default function Inscription() {
                     style={{
                       cursor: "pointer",
                     }}
-                    onClick={() => navigate("/inscription")}
+                    // onClick={() => navigate("/inscription")}
                   >
                     Connectez-vous
                   </u>
