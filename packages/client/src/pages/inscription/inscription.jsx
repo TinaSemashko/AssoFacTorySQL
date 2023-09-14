@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./inscription.styled";
-// import fdinscription from "../image/fdinscription.jpg";
+import videoInscription from "../../videos/videoInscription.mp4";
 import Grid from "@mui/system/Unstable_Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
@@ -52,7 +52,9 @@ export default function Inscription() {
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={0} columnSpacing={0}>
           <Grid xs={12} md={6}>
-            <S.Item>{/* <S.Img src={fdinscription} /> */}</S.Item>
+            <S.Item>
+              <video src={videoInscription} autoPlay loop muted />
+            </S.Item>
           </Grid>
           <Grid xs={12} md={6}>
             <S.Item>
