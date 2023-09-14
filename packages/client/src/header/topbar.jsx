@@ -127,7 +127,7 @@ export default function DrawerAppBar() {
               fontWeight= "400"
               lineHeight= "normal"
               component="div"
-              onClick={() => navigate("accueil")}
+              onClick={() => navigate("/")}
               sx={{
                 
                 my: 2,
