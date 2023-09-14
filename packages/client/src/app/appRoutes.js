@@ -5,7 +5,7 @@ import NotFound from "../pages/notFound/notFound";
 
 const Home = lazy(() => import("../pages/home/accueil"));
 const Blog = lazy(() => import("../pages/blog/blog"));
-const Inscription = lazy(() => import("../pages/inscription/inscription.jsx"));
+const Inscription = lazy(() => import("../pages/inscription/inscription"));
 
 export const AppRoutes = () => {
   return (
