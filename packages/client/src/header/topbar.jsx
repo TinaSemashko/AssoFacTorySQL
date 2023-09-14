@@ -50,7 +50,7 @@ export default function DrawerAppBar() {
         <CloseIcon sx={{ fontSize: "2rem",  }} />
       </S.CloseIconStyle>
       <Typography
-        onClick={() => navigate("accueil")}
+        onClick={() => navigate("/")}
         variant="h6"
         fontFamily='"Chicle", cursive'
         fontSize="12vw"
@@ -127,7 +127,7 @@ export default function DrawerAppBar() {
               fontWeight= "400"
               lineHeight= "normal"
               component="div"
-              onClick={() => navigate("accueil")}
+              onClick={() => navigate("/")}
               sx={{
                 
                 my: 2,
