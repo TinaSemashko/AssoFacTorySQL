@@ -11,25 +11,26 @@ const Footer = () => {
           
         </S.FooterLogo>
         <S.FooterLinks>
-   <ul>
+   <ul class="contact-list">
     <a href="/">Nous Contacter:</a>
-  <li>
+  
     <a href="/">
     <img src="Ringing Phone.png" alt="" /> Téléphone :
     </a>
-  </li>
-  <li>
+  
+  
     <a href="/">E-Mail :</a>
-  </li>
-  <li>
+  
+ 
     <a href="/">Adresse :</a>
-  </li>
+  
   </ul>
         </S.FooterLinks>
         <S.FooterSocialMedia>
           {/* Ajoutez ici des icônes ou des liens vers les réseaux sociaux */}
-          
+          Adresse :
           {/* Ajoutez d'autres icônes ou liens sociaux ici */}
+          E-Mail :
         </S.FooterSocialMedia>
       </S.FooterContent>
       <S.FooterCopyright>

@@ -19,6 +19,7 @@ import { useLocation, useNavigate } from "react-router";
 import FormConnexion from "../compenents/FormConnexion";
 
 import * as S from "./topbar.styled";
+import Logo from "../logo/Logo.mp4"
 
 const menuItemsArray = [
   "accueil",
@@ -82,7 +83,8 @@ export default function DrawerAppBar() {
         fontFamily="Wallpoet"
         sx={{ my: 2, color: "white" }}
       >
-        AssoFacTory
+         <video src={Logo} alt="Logo.mp4" autoPlay loop muted playsInline style={{ width: "50px", marginRight: "10px" }} AssoFacTory/>
+  AssoFacTory
       </Typography>
       <List
         sx={{

@@ -7,9 +7,11 @@ export const MainContainer = styled("div")`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   color: white; /* Couleur du texte */
   margin-top: 90%;
-  text-align: right;
+  text-align: center;
+
   
 `;
+
 
 export const FooterContent = styled("div")`
 text-align: center;
@@ -29,4 +31,13 @@ export const FooterSocialMedia = styled("div")`
 
 export const FooterCopyright = styled("div")`
   /* Ajoutez vos styles pour le texte de copyright du footer ici */
+`;
+
+export const ContactList = styled("ul")`
+  list-style-type: none; /* Supprimer les puces de liste */
+  padding: 0; /* Supprimer le padding par défaut de la liste */
+`;
+
+export const ContactListItem = styled("li")`
+  margin-bottom: 10px; /* Espacement entre les éléments de la liste */
 `;
