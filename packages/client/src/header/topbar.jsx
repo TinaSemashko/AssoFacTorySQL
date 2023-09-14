@@ -16,6 +16,7 @@ import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
 import * as S from "./topbar.styled";
+import Logo from "../logo/Logo.mp4"
 
 
 
@@ -57,7 +58,8 @@ export default function DrawerAppBar() {
         sx={{ my: 2, color: "black" }}
         
       >
-        AssoFacTory
+         <video src={Logo} alt="Logo.mp4" autoPlay loop muted playsInline style={{ width: "50px", marginRight: "10px" }} AssoFacTory/>
+  AssoFacTory
       </Typography>
       <Divider />
       <List
