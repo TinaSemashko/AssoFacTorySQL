@@ -14,6 +14,7 @@ export const MainContainer = styled("div")`
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   /* .video {
     width: 100%;
     margin-bottom: -1rem;
@@ -30,6 +31,8 @@ export const MainContainer = styled("div")`
     margin-bottom: -1rem;
   } */
 >>>>>>> 06513aa8 (accueil video)
+=======
+>>>>>>> cb1821cf (styled Accueil)
 
   .content {
     display: flex;
@@ -118,7 +121,7 @@ export const GridContainer = styled("div")`
 
   .content .img-txt-video {
     text-transform: uppercase;
-    color: #de9a5a;
+    color: #5e0202;
     padding: 1rem;
     font-size: 1.5rem;
     letter-spacing: 50px;
@@ -126,6 +129,7 @@ export const GridContainer = styled("div")`
     mix-blend-mode: difference;
   }
 `;
+<<<<<<< HEAD
 =======
 
   .content span.img-txt {
@@ -222,3 +226,15 @@ export const GridContainer = styled("div")`
   }
 `;
 >>>>>>> 06513aa8 (accueil video)
+=======
+
+export const Texts = styled("div")`
+  min-height: 100vh;
+  text-align: center;
+  line-height: 2;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  padding-top: 10rem;
+
+`;
+>>>>>>> cb1821cf (styled Accueil)
