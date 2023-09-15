@@ -38,10 +38,10 @@ export default function Inscription() {
     genre: "",
     email: "",
     password: "",
-    abonnement: false,
+    // photo: ,
   });
 
-  const { nom, prenom, genre, email, password } = user;
+  const { nom, prenom, genre, email, password, photo } = user;
 
   const onInputChange = (event) => {
     setUser({ ...user, [event.target?.name]: event.target?.value });
@@ -50,7 +50,7 @@ export default function Inscription() {
 
   return (
     <S.Container>
-      <Box sx={{ width: "100%" }}>
+      {/* <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={0} columnSpacing={0}>
           <Grid xs={12} md={6}>
             <S.Item>
@@ -327,7 +327,7 @@ export default function Inscription() {
             </S.Item>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
     </S.Container>
   );
 }

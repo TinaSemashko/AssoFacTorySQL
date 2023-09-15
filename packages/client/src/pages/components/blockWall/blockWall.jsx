@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import * as S from "./blockWall.styled";
 
-const blockWall = ({ text = "", imageUrl = "" }) => {
+const blockWall = ({ dataBlock }) => {
   const datatime = dayjs();
   // const [userdata, setUserdata] = useState();
 
-  userId = localStorage.getItem("usrCourant");
+  // const userId = localStorage.getItem("usrCourant");
   //console.log(auth);
 
   // const fetchGet = async () => {
@@ -31,13 +31,19 @@ const blockWall = ({ text = "", imageUrl = "" }) => {
 
   return (
     <S.MainContainer>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <S.MyTimeField defaultValue={datatime} disableFuture />
-        <S.Img src={imageUrl} />
-        <S.Text>
-          <Typography variant="h6"> {text}</Typography>
-        </S.Text>
-      </LocalizationProvider>
+      {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+      {/* <S.MyTimeField defaultValue={datatime} disableFuture /> */}
+      <S.Author>
+        <Typography variant="h6"> {dataBlock.user}</Typography>
+      </S.Author>
+      <S.Time>
+        <Typography variant="h6"> {dataBlock.time}</Typography>
+      </S.Time>
+      <S.Img src={dataBlock.media} />
+      <S.Text>
+        <Typography variant="h6"> {dataBlock.message}</Typography>
+      </S.Text>
+      {/* </LocalizationProvider> */}
     </S.MainContainer>
   );
 };

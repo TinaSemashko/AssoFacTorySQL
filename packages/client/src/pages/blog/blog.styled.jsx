@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import ListItemButton from "@mui/material/ListItemButton";
 
 export const MainContainer = styled("div")`
   padding-bottom: 10rem;
@@ -94,4 +95,31 @@ export const GridTitle = styled("div")`
   text-align: center;
   margin-bottom: 4vh;
   margin-top: 8vh;
+`;
+
+export const Filter = styled("div")`
+  width: 80%;
+  margin-left: 12vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vh;
+
+  position: -webkit-sticky;
+  position: sticky;
+  align-self: start;
+  top: 1rem;
+  left: 1rem;
+  text-align: center;
+  @media (max-width: 750px) {
+  }
+`;
+
+export const MyButton = styled(ListItemButton)`
+  white-space: nowrap;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  justify-content: center;
+  align-items: center;
 `;

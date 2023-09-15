@@ -30,3 +30,13 @@ export const MyTimeField = styled(TimeField)`
   text-align: left;
   border: none;
 `;
+
+export const Author = styled("div")`
+  /* width: 20vw;
+  text-align: left; */
+`;
+
+export const Time = styled("div")`
+  /* width: 20vw;
+  text-align: left; */
+`;

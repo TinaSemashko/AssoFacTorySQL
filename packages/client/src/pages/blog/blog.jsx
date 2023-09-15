@@ -7,64 +7,153 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import BlockWall from "../components/blockWall/blockWall";
 import Spinner from "@mui/material/CircularProgress";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import { IconButton, Input } from "@mui/material";
+import axios from "../../axios.js";
+import { useSnackbar } from "notistack";
+import Clock from "../../shared/clock";
 
 import * as S from "./blog.styled";
 
 const Blog = () => {
-  const [sendmessage, setSendmessage] = useState("");
-  const [componentList, setComponentList] = useState([]);
-  const [file, setFile] = useState("");
-  const [userdata, setUserdata] = useState();
-  // const { email, password } = user;
+  const { enqueueSnackbar } = useSnackbar();
+  // const [sendmessage, setSendmessage] = useState("");
+  // const [componentList, setComponentList] = useState([]);
+  // const [file, setFile] = useState("");
+  const [postdata, setPostdata] = useState([{}]);
+  const [post, setPost] = useState({});
+  const { id_user, id_salon, message, media, time } = post;
+  const [filterItemsArray, setFilterItemsArray] = useState([{}]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // useEffect(() => {
-  //   fetchGet();
-  // }, [userdata]);
+  useEffect(() => {
+    const fetchGetSalons = async () => {
+      await axios
+        .get(`salons`)
+        .then((response) => {
+          setFilterItemsArray(response.data.results[0]);
+        })
+        .catch((err) => {
+          showError(err, "Il n'y a pas de salons");
+        });
+    };
 
-  // const fetchGet = async () => {
-  //   const request = {
-  //     params: {
-  //       email: user.email,
-  //     },
-  //   };
-  //   await axios
-  //     .get(`user`, request)
-  //     .then((response) => {
-  //       setUserdata(response.data.results[0]);
-  //     })
-  //     .catch((err) => {
-  //       showError(err);
-  //     });
-  // };
+    fetchGetSalons();
+  }, []);
 
-  const onInputChange = (event) => {
-    setSendmessage(event.target?.value);
+  const showError = (err, mess) => {
+    enqueueSnackbar(mess, { variant: "error" });
+    console.error(err);
   };
 
-  const sendMessage = (buttonImage = false) => {
-    if ((sendmessage !== "" || file !== "") && !buttonImage) {
-      const newComponent = <BlockWall text={sendmessage} imageUrl={file} />;
-      setComponentList([...componentList, newComponent]);
-      setSendmessage("");
-      setFile("");
-    } else return <Spinner size={120} />;
+  const fetchGet = async () => {
+    await axios
+      .get(`posts`)
+      .then((response) => {
+        console.log(selectedIndex);
+        setPostdata(
+          Array.from(response.data.results[0]).filter(
+            (el) => el.id_salon === selectedIndex + 1
+          )
+        );
+      })
+      .catch((err) => {
+        showError(err, "Il n'y a pas de post");
+      });
   };
+
+  useEffect(() => {
+    fetchGet();
+  }, [selectedIndex]);
 
   const handleUpload = (event) => {
     if (event.target.files) {
-      setFile(URL.createObjectURL(event.target.files[0]));
+      setPost({ ...post, media: URL.createObjectURL(event.target.files[0]) });
     }
+  };
+
+  const fetchPost = async () => {
+    const request = {
+      data: post,
+    };
+    await axios
+      .post(`createpost`, request)
+      .then((response) => setNewUserId(response.data.results))
+      .catch((err) => {
+        showError(err, "Le post n'a pas créé");
+      });
+  };
+
+  const sendMessage = (buttonImage = false) => {
+    if ((message !== "" || file !== "") && !buttonImage) {
+      setPost({
+        ...post,
+        time: Clock().toString(),
+        id_salon: selectedIndex + 1,
+        id_user: 1,
+      });
+      console.log(post);
+      fetchPost();
+      // const newComponent = <BlockWall text={sendmessage} imageUrl={file} />;
+      // setComponentList([...componentList, newComponent]);
+      // setSendmessage("");
+      // setFile("");
+    } else return <Spinner size={120} />;
+  };
+
+  const filter = (item, index) => {
+    setSelectedIndex(index);
   };
 
   return (
     <S.MainContainer>
+      <S.Filter>
+        {filterItemsArray ? (
+          filterItemsArray.map((item, index) => (
+            <ListItem
+              disablePadding
+              key={item.id}
+              sx={{
+                width: "30vw",
+              }}
+            >
+              <S.MyButton
+                selected={selectedIndex === index}
+                onClick={() => filter(item, index)}
+                sx={{
+                  "&": {
+                    backgroundColor:
+                      item.id === 1
+                        ? "primary.main"
+                        : item.id === 2
+                        ? "secondary.main"
+                        : "colorBlue.main",
+
+                    textAlign: "center",
+                  },
+                }}
+              >
+                <Typography variant="h3">{item.salon}</Typography>
+              </S.MyButton>
+            </ListItem>
+          ))
+        ) : (
+          <Spinner size={120} />
+        )}
+      </S.Filter>
       <S.GridCadre>
-        <S.GridTitle>Bienvenu de blog !</S.GridTitle>
+        {postdata ? (
+          postdata.map((item) => <BlockWall dataBlock={item} />)
+        ) : (
+          <Spinner size={120} />
+        )}
+      </S.GridCadre>
+      {/* <S.GridCadre>
         {componentList.map((el, index) => (
           <div key={index}>{el}</div>
         ))}
-      </S.GridCadre>
+      </S.GridCadre> */}
       <S.GridSendBox>
         <Box
           component="form"
@@ -90,7 +179,7 @@ const Blog = () => {
             }}
             placeholder="Ecrivez votre message..."
             fullWidth
-            onChange={(e) => onInputChange(e)}
+            onChange={(e) => setPost({ ...post, message: e.target?.value })}
           />
         </Box>
 
@@ -135,8 +224,8 @@ const Blog = () => {
           }}
         />
         <Button
-          name="sendmessage"
-          value={sendmessage}
+          name="message"
+          value={message}
           onClick={() => sendMessage()}
           sx={{
             color: "colorOrangeBlog.main",
@@ -150,7 +239,6 @@ const Blog = () => {
             className="icon"
             sx={{
               color: "colorBlack.main",
-              // backgroundColor: "primary.main",
               borderRadius: "50%",
             }}
           />
