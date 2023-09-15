@@ -6,17 +6,8 @@ import * as S from "../compenents/ImgVideo.styled";
 const ImageFour = () => (
   <Parallax className="image" bgImage={YogaAccueil} strength={800}>
     <div className="content">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <span className="img-txt-yoga">Yoga</span>
-=======
-      <span className="img-txt">Détente & Yoga</span>
->>>>>>> b18f12fa (accueil)
-=======
-      <span className="img-txt-yoga">Yoga</span>
->>>>>>> 06513aa8 (accueil video)
-=======
+
+
       <S.Texts>
         <span className="img-txt-yoga">Cours de Yoga</span>
         <br />
@@ -54,7 +45,7 @@ const ImageFour = () => (
           perfectionner ces mouvements et à équilibrer votre chakra.
         </Typography>
       </S.Texts>
->>>>>>> cb1821cf (styled Accueil)
+
     </div>
   </Parallax>
 );

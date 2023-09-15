@@ -6,17 +6,8 @@ import * as S from "../compenents/ImgVideo.styled";
 const ImageThree = () => (
   <Parallax className="image" bgImage={StrongManAccueil} strength={800}>
     <div className="content">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <span className="img-txt-plateau">Plateau</span>
-=======
-      <span className="img-txt">Plateau</span>
->>>>>>> b18f12fa (accueil)
-=======
-      <span className="img-txt-plateau">Plateau</span>
->>>>>>> 06513aa8 (accueil video)
-=======
+
+
       <S.Texts>
         <span className="img-txt-plateau">LA SALLE DU TEMPS</span>
         <br />
@@ -62,7 +53,6 @@ const ImageThree = () => (
           </p>
         </Typography>
       </S.Texts>
->>>>>>> cb1821cf (styled Accueil)
     </div>
   </Parallax>
 );

@@ -2,22 +2,13 @@ import Typography from "@mui/material/Typography";
 import { Parallax } from "react-parallax";
 import StripPlasticAccueil from "../images/StripPlasticAccueil.jpg";
 import * as S from "../compenents/ImgVideo.styled";
-import { colors } from "@mui/material";
+// import { colors } from "@mui/material";
 
 const ImageTwo = () => (
   <Parallax className="image" bgImage={StripPlasticAccueil} strength={800}>
     <div className="content">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <span className="img-txt-strip">Strip-Plastic</span>
-=======
-      <span className="img-txt">Strip Plastic</span>
->>>>>>> b18f12fa (accueil)
-=======
-      <span className="img-txt-strip">Strip-Plastic</span>
->>>>>>> 06513aa8 (accueil video)
-=======
+
+
       <S.Texts>
         <span className="img-txt-strip">Strip-Plastic</span>
         <br />
@@ -53,7 +44,7 @@ const ImageTwo = () => (
           ateliers.
         </Typography>
       </S.Texts>
->>>>>>> cb1821cf (styled Accueil)
+
     </div>
   </Parallax>
 );

@@ -17,10 +17,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
 import * as S from "./topbar.styled";
 
-
-
-const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE et YOGA"];
-
+const menuItemsArray = [
+  "accueil",
+  "blog",
+  "STRIP PLASTIC ",
+  "PLATEAU",
+  "KINE et YOGA",
+];
 
 const drawerWidth = "30%";
 
@@ -32,22 +35,31 @@ export default function DrawerAppBar() {
   const isSelected = (item) =>
     pathname.includes(item) || (pathname === "/" && item === "accueil");
 
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const navigateItem = (item) => {
+    console.log(item);
+    if (item === "accueil") navigate("/");
+    else navigate(item);
+  };
+
   const drawer = (
     <Box
-   
       onClick={handleDrawerToggle}
-      sx={{ height: "100vh", textAlign: "center",  background: "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)" }}
+      sx={{
+        height: "100vh",
+        textAlign: "center",
+        background:
+          "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
+      }}
     >
       <S.CloseIconStyle>
         <Typography variant="h5" color="" className="close">
           Close
         </Typography>
-        <CloseIcon sx={{ fontSize: "2rem",  }} />
+        <CloseIcon sx={{ fontSize: "2rem" }} />
       </S.CloseIconStyle>
       <Typography
         onClick={() => navigate("/")}
@@ -55,7 +67,6 @@ export default function DrawerAppBar() {
         fontFamily='"Chicle", cursive'
         fontSize="12vw"
         sx={{ my: 2, color: "black" }}
-        
       >
         AssoFacTory
       </Typography>
@@ -67,8 +78,6 @@ export default function DrawerAppBar() {
           justifyContent: "space-between",
           alignItems: "center",
           color: "black",
-         
-         
         }}
       >
         {menuItemsArray.map((item) => (
@@ -79,7 +88,7 @@ export default function DrawerAppBar() {
             >
               <ListItemText
                 primary={item}
-                onClick={() => navigate(item)}
+                onClick={() => navigateItem(item)}
                 primaryTypographyProps={{
                   fontSize: "40px",
                   textTransform: "capitalize",
@@ -87,13 +96,11 @@ export default function DrawerAppBar() {
                   lineHeight: "normal",
                   fontWeight: "400",
                   fontFamily: "Wallpoet",
-                  
                 }}
               />
             </ListItemButton>
           </ListItem>
         ))}
-       
       </List>
     </Box>
   );
@@ -101,19 +108,22 @@ export default function DrawerAppBar() {
     <S.Container>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar
-          component="nav"
-       
-        >
+        <AppBar component="nav">
           <Toolbar
-            sx={{ display: "flex", justifyContent: "end", width: "100%", color: "black",   background: "linear-gradient(180deg, #BE0000 0%, rgba(220, 80, 2, 0.46) 61.98%, rgba(155, 37, 37, 0.00) 100%)"}}
+            sx={{
+              display: "flex",
+              justifyContent: "end",
+              width: "100%",
+              color: "black",
+              background:
+                "linear-gradient(180deg, #BE0000 0%, rgba(220, 80, 2, 0.46) 61.98%, rgba(155, 37, 37, 0.00) 100%)",
+            }}
           >
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              
             >
               <MenuIcon />
             </IconButton>
@@ -121,15 +131,14 @@ export default function DrawerAppBar() {
               variant="h4"
               fontFamily='"Wallpoet", cursive'
               color="#5E0202"
-              textAlign= "center"
-              fontSize= "32px"
-              fontStyle= "normal"
-              fontWeight= "400"
-              lineHeight= "normal"
+              textAlign="center"
+              fontSize="32px"
+              fontStyle="normal"
+              fontWeight="400"
+              lineHeight="normal"
               component="div"
               onClick={() => navigate("/")}
               sx={{
-                
                 my: 2,
                 opacity: 0.8,
                 flexGrow: 1,
@@ -140,27 +149,26 @@ export default function DrawerAppBar() {
               AssoFacTory
             </Typography>
             {/* <Box component="nav"> */}
-          <Drawer
-            anchor="left"
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-             
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            {drawer}
-          </Drawer>
-        {/* </Box> */}
+            <Drawer
+              anchor="left"
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+            >
+              {drawer}
+            </Drawer>
+            {/* </Box> */}
             {/* <List sx={{ display: { xs: "none", sm: "flex" } }}> */}
-              {/* {menuItemsArray.map((item) => (
+            {/* {menuItemsArray.map((item) => (
                 <ListItem key={item} disablePadding>
                   <ListItemButton
                     selected={isSelected(item)}
@@ -187,7 +195,6 @@ export default function DrawerAppBar() {
             {/* </List> */}
           </Toolbar>
         </AppBar>
-        
       </Box>
     </S.Container>
   );
