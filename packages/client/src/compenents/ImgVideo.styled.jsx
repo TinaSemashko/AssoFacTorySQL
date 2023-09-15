@@ -102,3 +102,8 @@ export const GridContainer = styled("div")`
     mix-blend-mode: difference;
   }
 `;
+  export const Texts = styled("div")`
+    text-align: center;
+    margin-left: 20rem;
+    margin-right: 20rem;
+  `;

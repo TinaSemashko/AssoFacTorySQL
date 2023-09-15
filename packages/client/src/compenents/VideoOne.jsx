@@ -13,6 +13,7 @@ const VideoOne = () => (
       </BackGroundGradientLogo>
     </div>
   </S.GridContainer>
+
 );
 
 export default VideoOne;

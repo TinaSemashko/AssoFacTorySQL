@@ -55,6 +55,12 @@ export default function Inscription() {
             <S.Item>
               <video src={videoInscription} autoPlay loop muted />
             </S.Item>
+
+            <S.Item>{/* <S.Img src={fdinscription} /> */}</S.Item>
+
+            <S.Item>
+              <video src={videoInscription} autoPlay loop muted />
+            </S.Item>
           </Grid>
           <Grid xs={12} md={6}>
             <S.Item>
@@ -307,6 +313,10 @@ export default function Inscription() {
                     style={{
                       cursor: "pointer",
                     }}
+                    // onClick={() => navigate("/inscription")}
+
+                    onClick={() => navigate("/inscription")}
+
                     // onClick={() => navigate("/inscription")}
                   >
                     Connectez-vous
