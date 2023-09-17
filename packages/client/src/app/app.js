@@ -6,7 +6,7 @@ import { AppRoutes } from "../app/appRoutes";
 
 export let theme = createTheme({
   palette: {
-    primary: {
+    colorRed: {
       main: "#FF0000",
     },
     secondary: {

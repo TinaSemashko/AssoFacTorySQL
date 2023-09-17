@@ -125,7 +125,7 @@ const Blog = () => {
                   "&": {
                     backgroundColor:
                       item.id === 1
-                        ? "primary.main"
+                        ? "colorRed.main"
                         : item.id === 2
                         ? "secondary.main"
                         : "colorBlue.main",

@@ -110,7 +110,14 @@ export default function DrawerAppBar() {
   );
   return (
     <S.Container>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          "& .MuiPaper-root": {
+            backgroundColor: "transparent",
+          },
+          display: "flex",
+        }}
+      >
         <CssBaseline />
         <AppBar component="nav">
           <Toolbar
@@ -119,8 +126,7 @@ export default function DrawerAppBar() {
               justifyContent: "end",
               width: "100%",
               color: "black",
-              background:
-                "linear-gradient(180deg, #BE0000 0%, rgba(220, 80, 2, 0.46) 61.98%, rgba(155, 37, 37, 0.00) 100%)",
+              background: "transparent",
             }}
           >
             <IconButton

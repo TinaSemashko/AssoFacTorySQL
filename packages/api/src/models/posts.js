@@ -22,15 +22,6 @@ export const getPostsBySalon = async (id_salon) => {
   return null;
 };
 
-// export const putUserAbonnement = async (email) => {
-//   const results =
-//     (await knex) < User > table.update({ abonnement: true }).where({ email });
-
-//   if (results) return results;
-
-//   return null;
-// };
-
 export const createPost = async (data) => {
   const results = await knex(table)
     .insert({ ...data })

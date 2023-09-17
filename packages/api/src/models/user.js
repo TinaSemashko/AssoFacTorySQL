@@ -32,16 +32,6 @@ export const getUserById = async (id) => {
   return null;
 };
 
-export const getPostsBySalon = async (id_salon) => {
-  const results = await knex(table).select("*").where({ id_salon });
-
-  if (results && results.length) {
-    return results;
-  }
-
-  return null;
-};
-
 // export const putUserAbonnement = async (email) => {
 //   const results =
 //     (await knex) < User > table.update({ abonnement: true }).where({ email });
