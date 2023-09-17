@@ -16,6 +16,7 @@ import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
 import * as S from "./topbar.styled";
+import FormConnexion from "../compenents/FormConnexion";
 
 const menuItemsArray = [
   "accueil",
@@ -25,7 +26,7 @@ const menuItemsArray = [
   "KINE et YOGA",
 ];
 
-const drawerWidth = "30%";
+const drawerWidth = "50%";
 
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,20 +57,23 @@ export default function DrawerAppBar() {
       }}
     >
       <S.CloseIconStyle>
-        <Typography variant="h5" color="" className="close">
+        <Typography variant="h5" color="black" className="close">
           Close
         </Typography>
-        <CloseIcon sx={{ fontSize: "2rem" }} />
+        <CloseIcon sx={{ fontSize: "4rem" }} />
       </S.CloseIconStyle>
       <Typography
         onClick={() => navigate("/")}
         variant="h6"
-        fontFamily='"Chicle", cursive'
-        fontSize="12vw"
+        fontFamily="Wallpoet"
         sx={{ my: 2, color: "black" }}
       >
         AssoFacTory
       </Typography>
+
+      <S.Form>
+        <FormConnexion />
+      </S.Form>
       <Divider />
       <List
         sx={{

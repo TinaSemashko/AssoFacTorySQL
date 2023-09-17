@@ -43,7 +43,7 @@ export const MainContainer = styled("div")`
     padding: 1rem;
     font-size: 1.5rem;
     letter-spacing: 30px;
-    z-index: 100;
+     z-index: 100;
     mix-blend-mode: difference;
   }
 
@@ -102,8 +102,8 @@ export const GridContainer = styled("div")`
     mix-blend-mode: difference;
   }
 `;
-  export const Texts = styled("div")`
-    text-align: center;
-    margin-left: 20rem;
-    margin-right: 20rem;
-  `;
+export const Texts = styled("div")`
+  text-align: center;
+  margin-left: 20rem;
+  margin-right: 20rem;
+`;
