@@ -6,8 +6,6 @@ import * as S from "../compenents/ImgVideo.styled";
 const ImageThree = () => (
   <Parallax className="image" bgImage={StrongManAccueil} strength={800}>
     <div className="content">
-
-
       <S.Texts>
         <span className="img-txt-plateau">LA SALLE DU TEMPS</span>
         <br />
