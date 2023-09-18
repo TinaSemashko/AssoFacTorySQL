@@ -14,10 +14,15 @@ const Footer = () => {
    <ul class="contact-list">
    <li><a href="/">Nous Contacter:</a></li>
   
-    <a href="/">
-    <img src={Tele} alt="Téléphone" style= {{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }} /> 
-    </a>
-  
+   <a href="/">
+  <img
+    src={Tele}
+    alt="Téléphone"
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }}
+  />
+  Téléphone
+</a>
+
   
   <li><a href="/">E-Mail :</a></li>
   
