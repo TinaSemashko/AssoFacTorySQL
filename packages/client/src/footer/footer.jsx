@@ -1,5 +1,5 @@
 import * as S from "./footer.styled";
-
+import Tele from "../logo/iconeTel.png";
 
 const Footer = () => {
   
@@ -12,26 +12,21 @@ const Footer = () => {
         </S.FooterLogo>
         <S.FooterLinks>
    <ul class="contact-list">
-    <a href="/">Nous Contacter:</a>
+   <li><a href="/">Nous Contacter:</a></li>
   
     <a href="/">
-    <img src="Ringing Phone.png" alt="" /> Téléphone :
+    <img src={Tele} alt="Téléphone" style= {{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }} /> 
     </a>
   
   
-    <a href="/">E-Mail :</a>
+  <li><a href="/">E-Mail :</a></li>
   
  
-    <a href="/">Adresse :</a>
+  <li> <a href="/">Adresse :</a></li>
   
   </ul>
         </S.FooterLinks>
-        <S.FooterSocialMedia>
-          {/* Ajoutez ici des icônes ou des liens vers les réseaux sociaux */}
-          Adresse :
-          {/* Ajoutez d'autres icônes ou liens sociaux ici */}
-          E-Mail :
-        </S.FooterSocialMedia>
+       
       </S.FooterContent>
       <S.FooterCopyright>
         {/* Ajoutez ici le texte de copyright */}

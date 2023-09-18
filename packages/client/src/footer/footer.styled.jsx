@@ -19,11 +19,24 @@ text-align: center; font-family: Wallpoet;
 `;
 
 export const FooterLogo = styled("div")`
-  /* Ajoutez vos styles pour le logo du footer ici */
+  /* Ajoutez vos styles pour le logo du footer ici */ 
+  display: flex;
+width: 222px;
+height: 100px;
+flex-direction: column;
+justify-content: center;
+line-height: normal;
 `;
 
 export const FooterLinks = styled("div")`
   /* Ajoutez vos styles pour les liens du footer ici */
+  display: flex;
+width: 222px;
+height: 100px;
+flex-direction: column;
+justify-content: center;
+margin-left: auto;
+line-height: normal;
 `;
 
 export const FooterSocialMedia = styled("div")`
@@ -41,4 +54,5 @@ export const ContactList = styled("ul")`
 
 export const ContactListItem = styled("li")`
   margin-bottom: 10px; /* Espacement entre les éléments de la liste */
+  
 `;
