@@ -8,13 +8,14 @@ export const MainContainer = styled("div")`
   color: white; /* Couleur du texte */
   margin-top: 90%;
   text-align: center;
+  
 
   
 `;
 
 
 export const FooterContent = styled("div")`
-text-align: center;
+text-align: center; font-family: Wallpoet;
 `;
 
 export const FooterLogo = styled("div")`

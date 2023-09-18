@@ -19,15 +19,8 @@ import { useLocation, useNavigate } from "react-router";
 import FormConnexion from "../compenents/FormConnexion";
 
 import * as S from "./topbar.styled";
-import Logo from "../logo/Logo.mp4"
+import Logo from "../logo/Logo.gif";
 
-const menuItemsArray = [
-  "accueil",
-  "blog",
-  "STRIP PLASTIC ",
-  "PLATEAU",
-  "KINE et YOGA",
-];
 
 
 const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE ET YOGA"];
@@ -80,8 +73,10 @@ export default function DrawerAppBar() {
       <Typography
         onClick={() => navigate("/")}
         variant="h2"
-        fontFamily="Wallpoet"
-        sx={{ my: 2, color: "white" }}
+        fontFamily='Wallpoet'
+       
+        sx={{ my: 2, color: "black" }}
+        
       >
          <video src={Logo} alt="Logo.mp4" autoPlay loop muted playsInline style={{ width: "50px", marginRight: "10px" }} AssoFacTory/>
   AssoFacTory
@@ -114,8 +109,10 @@ export default function DrawerAppBar() {
                   fontWeight: "400",
                   fontFamily: "Wallpoet",
                 }}
+                
               />
             </ListItemButton>
+            
           </ListItem>
         ))}
       </List>
@@ -123,14 +120,7 @@ export default function DrawerAppBar() {
   );
   return (
     <S.Container>
-      <Box
-        sx={{
-          "& .MuiPaper-root": {
-            backgroundColor: "transparent",
-          },
-          display: "flex",
-        }}
-      >
+      <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar component="nav">
           <Toolbar
@@ -170,6 +160,7 @@ export default function DrawerAppBar() {
                 cursor: "pointer",
               }}
             >
+              <S.Img src={Logo} alt="Logo"  style={{ width: "54px", height: "46px", marginRight: "40px" }} />
               AssoFacTory
             </Typography>
             <ClickAwayListener
