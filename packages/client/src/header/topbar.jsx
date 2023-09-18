@@ -16,7 +16,7 @@ import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
 import * as S from "./topbar.styled";
-import Logo from "../logo/Logo.mp4"
+import Logo from "../logo/Logo.gif";
 
 
 
@@ -58,7 +58,7 @@ export default function DrawerAppBar() {
         sx={{ my: 2, color: "black" }}
         
       >
-         <video src={Logo} alt="Logo.mp4" autoPlay loop muted playsInline style={{ width: "50px", marginRight: "10px" }} AssoFacTory/>
+        
   AssoFacTory
       </Typography>
       <Divider />
@@ -91,8 +91,10 @@ export default function DrawerAppBar() {
                   fontFamily: "Wallpoet",
                   
                 }}
+                
               />
             </ListItemButton>
+            
           </ListItem>
         ))}
        
@@ -102,6 +104,9 @@ export default function DrawerAppBar() {
   return (
     <S.Container>
       <Box sx={{ display: "flex" }}>
+      
+         
+         
         <CssBaseline />
         <AppBar
           component="nav"
@@ -139,6 +144,7 @@ export default function DrawerAppBar() {
                 cursor: "pointer",
               }}
             >
+              <S.Img src={Logo} alt="Logo"  style={{ width: "54px", height: "46px", marginRight: "40px" }} />
               AssoFacTory
             </Typography>
             {/* <Box component="nav"> */}
