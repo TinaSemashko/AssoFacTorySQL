@@ -1,4 +1,5 @@
 import * as React from "react";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,8 +16,9 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
-import * as S from "./topbar.styled";
 import FormConnexion from "../compenents/FormConnexion";
+
+import * as S from "./topbar.styled";
 
 const menuItemsArray = [
   "accueil",
@@ -48,9 +50,9 @@ export default function DrawerAppBar() {
 
   const drawer = (
     <Box
-      onClick={handleDrawerToggle}
+      // onClick={handleDrawerToggle}
       sx={{
-        height: "100vh",
+        // height: "100%",
         textAlign: "center",
         background:
           "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
@@ -60,43 +62,48 @@ export default function DrawerAppBar() {
         <Typography variant="h5" color="black" className="close">
           Close
         </Typography>
-        <CloseIcon sx={{ fontSize: "4rem" }} />
+        <CloseIcon
+          onClick={handleDrawerToggle}
+          sx={{ fontSize: "4rem", cursor: "pointer" }}
+        />
       </S.CloseIconStyle>
-      <Typography
-        onClick={() => navigate("/")}
-        variant="h6"
-        fontFamily="Wallpoet"
-        sx={{ my: 2, color: "black" }}
-      >
-        AssoFacTory
-      </Typography>
 
       <S.Form>
         <FormConnexion />
       </S.Form>
       <Divider />
+      <Typography
+        onClick={() => navigate("/")}
+        variant="h2"
+        fontFamily="Wallpoet"
+        sx={{ my: 2, color: "white" }}
+      >
+        AssoFacTory
+      </Typography>
       <List
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "black",
         }}
       >
-        {menuItemsArray.map((item) => (
+        {menuItemsArray.map((item, index) => (
           <ListItem key={item}>
             <ListItemButton
               selected={isSelected(item)}
-              sx={{ textAlign: "center", color: "black" }}
+              onClick={handleDrawerToggle}
+              sx={{
+                textAlign: "center",
+                color: index > 1 ? "colorWhite.main" : "colorBlack.main",
+              }}
             >
               <ListItemText
                 primary={item}
                 onClick={() => navigateItem(item)}
                 primaryTypographyProps={{
-                  fontSize: "40px",
+                  fontSize: index > 1 ? "15px" : "30px",
                   textTransform: "capitalize",
-                  color: "black",
                   lineHeight: "normal",
                   fontWeight: "400",
                   fontFamily: "Wallpoet",
@@ -158,51 +165,29 @@ export default function DrawerAppBar() {
             >
               AssoFacTory
             </Typography>
-            {/* <Box component="nav"> */}
-            <Drawer
-              anchor="left"
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-              sx={{
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: drawerWidth,
-                },
-              }}
+            <ClickAwayListener
+              mouseEvent="onMouseDown"
+              touchEvent="onTouchStart"
+              onClickAway={() => mobileOpen && handleDrawerToggle()}
             >
-              {drawer}
-            </Drawer>
-            {/* </Box> */}
-            {/* <List sx={{ display: { xs: "none", sm: "flex" } }}> */}
-            {/* {menuItemsArray.map((item) => (
-                <ListItem key={item} disablePadding>
-                  <ListItemButton
-                    selected={isSelected(item)}
-                    onClick={() => navigate(item)}
-                    sx={{
-                      color: "white",
-                      textTransform: "capitalize",
-                      "&.Mui-selected": {
-                        color: item === "inscription" ? "white" : "#daca3bff",
-                        backgroundColor:
-                          item === "inscription" ? "#daca3bff" : "transparent",
-                        borderRadius: item === "inscription" ? "10px" : "0",
-                        boxShadow:
-                          item === "inscription"
-                            ? " 0px 4px 4px #2e4f44 "
-                            : "transparent",
-                      },
-                    }}
-                  >
-                    {item}
-                  </ListItemButton>
-                </ListItem>
-              ))} */}
-            {/* </List> */}
+              <Drawer
+                anchor="left"
+                variant="temporary"
+                open={mobileOpen}
+                onClose={(_, reason) => reason === "backdropClick"}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                  "& .MuiDrawer-paper": {
+                    boxSizing: "border-box",
+                    width: drawerWidth,
+                  },
+                }}
+              >
+                {drawer}
+              </Drawer>
+            </ClickAwayListener>
           </Toolbar>
         </AppBar>
       </Box>
