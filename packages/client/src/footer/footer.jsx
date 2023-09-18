@@ -1,5 +1,7 @@
 import * as S from "./footer.styled";
 import Tele from "../logo/iconeTel.png";
+import Mail from "../logo/Email.png";
+import Localisation from "../logo/Location.png";
 
 const Footer = () => {
   
@@ -12,22 +14,38 @@ const Footer = () => {
         </S.FooterLogo>
         <S.FooterLinks>
    <ul class="contact-list">
-   <li><a href="/">Nous Contacter:</a></li>
+   <span style={{ color: "white" }}>Nous Contacter:</span>
+
   
    <a href="/">
   <img
     src={Tele}
     alt="Téléphone"
-    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }}
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px", }}
   />
-  Téléphone
+   <span style={{ color: "white" }}>Téléphone:</span>
 </a>
 
+
+<a href="/">
+  <img
+    src={Mail}
+    alt="E-Mail"
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }}
+  />
+  <span style={{ color: "white" }}>E-Mail:</span>
+</a>
+
+
+<a href="/" style={{ display: "flex", alignItems: "center" }}>
+  <img
+    src={Localisation}
+    alt="Adresse"
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px"  }}
+  />
+   <span style={{ color: "white" }}>Adresse:</span>
+</a>
   
-  <li><a href="/">E-Mail :</a></li>
-  
- 
-  <li> <a href="/">Adresse :</a></li>
   
   </ul>
         </S.FooterLinks>
