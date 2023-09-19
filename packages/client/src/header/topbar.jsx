@@ -16,6 +16,9 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
+
+import * as S from "./topbar.styled";
+import Logo from "../logo/Logo.gif";
 import FormConnexion from "../compenents/FormConnexion";
 
 import * as S from "./topbar.styled";
@@ -78,7 +81,8 @@ export default function DrawerAppBar() {
         fontFamily="Wallpoet"
         sx={{ my: 2, color: "white" }}
       >
-        AssoFacTory
+        
+  AssoFacTory
       </Typography>
       <List
         sx={{
@@ -108,8 +112,10 @@ export default function DrawerAppBar() {
                   fontWeight: "400",
                   fontFamily: "Wallpoet",
                 }}
+                
               />
             </ListItemButton>
+            
           </ListItem>
         ))}
       </List>
@@ -125,6 +131,7 @@ export default function DrawerAppBar() {
           display: "flex",
         }}
       >
+
         <CssBaseline />
         <AppBar component="nav">
           <Toolbar
@@ -164,6 +171,7 @@ export default function DrawerAppBar() {
                 cursor: "pointer",
               }}
             >
+              <S.Img src={Logo} alt="Logo"  style={{ width: "54px", height: "46px", marginRight: "40px" }} />
               AssoFacTory
             </Typography>
             <ClickAwayListener
