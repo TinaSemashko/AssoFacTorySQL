@@ -16,17 +16,22 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
-import FormConnexion from "../compenents/FormConnexion";
 
 import * as S from "./topbar.styled";
 import Logo from "../logo/Logo.gif";
+import FormConnexion from "../compenents/FormConnexion";
 
+import * as S from "./topbar.styled";
 
+const menuItemsArray = [
+  "accueil",
+  "blog",
+  "STRIP PLASTIC ",
+  "PLATEAU",
+  "KINE et YOGA",
+];
 
-const menuItemsArray = ["accueil", "blog",  "STRIP PLASTIC ","PLATEAU", "KINE ET YOGA"];
-
-
-const drawerWidth = "30%";
+const drawerWidth = "50%";
 
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -73,12 +78,10 @@ export default function DrawerAppBar() {
       <Typography
         onClick={() => navigate("/")}
         variant="h2"
-        fontFamily='Wallpoet'
-       
-        sx={{ my: 2, color: "black" }}
-        
+        fontFamily="Wallpoet"
+        sx={{ my: 2, color: "white" }}
       >
-         <video src={Logo} alt="Logo.mp4" autoPlay loop muted playsInline style={{ width: "50px", marginRight: "10px" }} AssoFacTory/>
+        
   AssoFacTory
       </Typography>
       <List
@@ -120,7 +123,15 @@ export default function DrawerAppBar() {
   );
   return (
     <S.Container>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          "& .MuiPaper-root": {
+            backgroundColor: "transparent",
+          },
+          display: "flex",
+        }}
+      >
+
         <CssBaseline />
         <AppBar component="nav">
           <Toolbar
