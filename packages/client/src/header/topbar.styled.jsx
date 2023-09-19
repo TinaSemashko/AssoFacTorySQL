@@ -8,7 +8,7 @@ export const CloseIconStyle = styled("div")`
   display: flex;
   justify-content: end;
   align-items: center;
-  color: #000000;
+  /* color: #000000; */
 
   .close {
     text-transform: capitalize;
@@ -62,7 +62,7 @@ export const Img = styled("img")`
 
 export const CContainer = styled("div")`
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
 
   @media (max-width: 750px) {
     display: flex;
@@ -107,7 +107,7 @@ export const FlexContainer = styled("div")`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border-radius: 20px; */
+   border-radius: 20px; 
   /* width: 30vw;
     height: 70vh;
     background-color: #1d5a43; */
@@ -130,4 +130,5 @@ export const Inscrivez = styled("div")`
 
 export const Form = styled("div")`
   color: white;
+  padding-bottom: 10%;
 `;

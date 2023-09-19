@@ -42,6 +42,12 @@ export let theme = createTheme({
     colorBlack: {
       main: "#000000",
     },
+    colorRed: {
+      main: "rgba(155, 37, 37, 0)",
+    },
+    colorOrangeed701d: {
+      main: "#ed701d",
+    },
   },
   //background: linear-gradient(180deg, rgba(220, 80, 2, 0.4624) 43.23%, rgba(155, 37, 37, 0) 100%);
   //background: linear-gradient(

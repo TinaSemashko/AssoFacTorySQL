@@ -16,3 +16,15 @@ export const BackGroundGradientLogo = styled("div")`
     ${({ theme }) => theme.palette.colorWhite.main} 100%
   );
 `;
+
+export const BackGroundGradientInscription = styled("div")`
+  background: linear-gradient(
+    180deg,
+    ${({ theme }) => theme.palette.colorBrown.main} 0%,
+    ${({ theme }) => theme.palette.colorOrange04624.main} 50%,
+    ${({ theme }) => theme.palette.colorRed.main} 100%
+  );
+  border-radius: 20px;
+  border: solid 1px;
+  box-shadow: 0px 0px 1px 0px;
+`;

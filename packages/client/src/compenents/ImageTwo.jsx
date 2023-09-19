@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import { Parallax } from "react-parallax";
 import StripPlasticAccueil from "../images/StripPlasticAccueil.jpg";
 import * as S from "../compenents/ImgVideo.styled";
-// import { colors } from "@mui/material";
+
 
 const ImageTwo = () => (
   <Parallax className="image" bgImage={StripPlasticAccueil} strength={800}>

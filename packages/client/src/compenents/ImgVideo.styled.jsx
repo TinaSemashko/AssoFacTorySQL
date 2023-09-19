@@ -5,10 +5,6 @@ export const MainContainer = styled("div")`
     position: relative;
     height: 100vh;
   }
-  /* .video {
-    width: 100%;
-    margin-bottom: -1rem;
-  } */
 
   .content {
     display: flex;
@@ -17,13 +13,6 @@ export const MainContainer = styled("div")`
     position: absolute;
     height: 100vh;
     width: 100%;
-  }
-  .content div.video-txt-assofactory {
-    background-color: #ff0000;
-    text-transform: uppercase;
-    color: #de9a5a;
-    mix-blend-mode: hard-light;
-    letter-spacing: 30px;
   }
 
   .content span.img-txt-strip {
@@ -43,7 +32,7 @@ export const MainContainer = styled("div")`
     padding: 1rem;
     font-size: 1.5rem;
     letter-spacing: 30px;
-     z-index: 100;
+    z-index: 100;
     mix-blend-mode: difference;
   }
 
@@ -93,13 +82,14 @@ export const GridContainer = styled("div")`
   }
 
   .content .img-txt-video {
+    background-color: goldenrod;
     text-transform: uppercase;
-    color: #de9a5a;
+    color: red;
     padding: 1rem;
     font-size: 1.5rem;
     letter-spacing: 50px;
     z-index: 100;
-    mix-blend-mode: difference;
+    mix-blend-mode: color-dodge;
   }
 `;
 export const Texts = styled("div")`

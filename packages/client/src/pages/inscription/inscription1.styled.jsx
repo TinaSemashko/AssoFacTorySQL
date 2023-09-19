@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
 
 export const Container = styled("div")`
   width: 100%;
@@ -47,7 +47,7 @@ export const FormContainer = styled("div")`
   justify-content: space-evenly;
   height: 100vh;
   padding-bottom: 15vh;
-  background-color: #c38063;
+  background-color: ${({ theme }) => theme.palette.colorOrangeBlog.main};
   color: black;
 `;
 
@@ -79,10 +79,6 @@ export const FlexContainerPass = styled("div")`
 
 export const Inscrivez = styled("div")`
   color: white;
-
-  u {
-    color: black;
-  }
 `;
 export const FlexContainerNom = styled("div")`
   display: flex;
@@ -108,16 +104,3 @@ export const Button = styled("div")`
   align-items: center;
   color: white;
 `;
-
-export const Img2 = styled("img")`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 3rem;
-
-  u{
-    color: white;
-  }
-`;
-
-
