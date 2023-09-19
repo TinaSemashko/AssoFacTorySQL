@@ -16,8 +16,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { BackGroundGradientInscription } from "../../shared/shared.styled";
-import Upload from "../../images/Upload.png";
-import Ellipse from "../../images/Ellipse.png";
+import UpLoad from "../../images/UpLoad.png";
+
 import * as S from "./inscription.styled";
 
 import { useSnackbar } from "notistack";
@@ -49,6 +49,10 @@ export default function Inscription() {
     console.log(user);
   };
 
+  const openTopbar = () => {
+    document.querySelector("#iconbutton").click();
+  };
+
   return (
     <S.Container>
       <Box sx={{ width: "100%" }}>
@@ -63,9 +67,10 @@ export default function Inscription() {
               <S.FormContainer>
                 <Typography
                   variant="h2"
+                  pt={6}
+                  pb={6}
                   sx={{
                     textAlign: "center",
-                    // fontFamily: "Gravitas One', cursive",
                   }}
                 >
                   Inscription
@@ -111,7 +116,7 @@ export default function Inscription() {
                             m: 1,
                             width: { xs: "50vw", md: "25vw" },
                             backgroundColor: " white",
-                            // boxShadow: " 0px 8px 8px #566573  inset",
+                            boxShadow: " 0px 8px 8px #566573  inset",
                           }}
                         />
                       </S.FlexContainerNom>
@@ -255,8 +260,23 @@ export default function Inscription() {
                           </FormControl>
                         </Box>
                       </S.FlexContainerPass>
-                      <S.Img2 src={Upload}></S.Img2>
-                      <S.Img3 src={Ellipse}></S.Img3>
+                      <S.Img2
+                        src={UpLoad}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        onClick={() => console.log("click")}
+                      />
+
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "colorWhite.main",
+                        }}
+                      >
+                        Choisissez votre photo de profil
+                      </Typography>
+
                       <Button
                         variant="contained"
                         size="medium"
@@ -271,20 +291,20 @@ export default function Inscription() {
                       >
                         Valider
                       </Button>
+                      <S.Inscrivez>
+                        Déja Inscrit ?
+                        <u
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openTopbar()}
+                        >
+                          Connectez-vous
+                        </u>
+                      </S.Inscrivez>
                     </S.FlexContainer>
                   </BackGroundGradientInscription>
                 </Box>
-                <S.Inscrivez>
-                  Déja Inscrit ?
-                  <u
-                    style={{
-                      cursor: "pointer",
-                    }}
-                    // onClick={() => navigate("/inscription")}
-                  >
-                    Connectez-vous
-                  </u>
-                </S.Inscrivez>
               </S.FormContainer>
             </S.Item>
           </Grid>

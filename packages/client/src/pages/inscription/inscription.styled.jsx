@@ -110,14 +110,14 @@ export const Button = styled("div")`
 `;
 
 export const Img2 = styled("img")`
-  /* display: flex;
-  justify-content: space-evenly;
-  align-items: center; */
-  /* margin-top: 3rem; */
-`;
-
-export const Img3 = styled("img")`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 3rem;
+
+  u{
+    color: white;
+  }
 `;
+
+

@@ -1,13 +1,15 @@
-import { Typography } from "@mui/material";
+import { Parallax } from "react-parallax";
+import imgBlog from "../../images/imgBlog.jpg";
+import * as S from "../notFound/notFound.styled";
 
-import * as S from "./notFound.styled";
+const notFound = () => (
+  <Parallax className="image" bgImage={imgBlog}>
+    <div className="content">
+      <S.Texts>
+        <span className="img-error">Error 404</span>
+      </S.Texts>
+    </div>
+  </Parallax>
+);
 
-const blockWall = ({ text = "", imageUrl = "" }) => {
-  return (
-    <S.MainContainer>
-      <Typography variant="h1">404</Typography>
-    </S.MainContainer>
-  );
-};
-
-export default blockWall;
+export default notFound;
