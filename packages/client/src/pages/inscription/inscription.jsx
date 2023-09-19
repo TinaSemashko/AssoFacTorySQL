@@ -16,7 +16,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { BackGroundGradientInscription } from "../../shared/shared.styled";
-import UpLoad from "../../images/UpLoad.png";
+import UpLoad from "../../images/Upload.png";
 
 import * as S from "./inscription.styled";
 

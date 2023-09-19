@@ -21,7 +21,7 @@ import * as S from "./topbar.styled";
 import Logo from "../logo/Logo.gif";
 import FormConnexion from "../compenents/FormConnexion";
 
-import * as S from "./topbar.styled";
+
 
 const menuItemsArray = [
   "accueil",
