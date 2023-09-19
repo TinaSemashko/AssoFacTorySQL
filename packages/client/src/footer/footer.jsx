@@ -9,7 +9,7 @@ const Footer = () => {
     <S.MainContainer>
       <S.FooterContent>
         <S.FooterLogo>
-          {/* Inclure ici le logo ou le texte du footer */}
+          
           
         </S.FooterLogo>
         <S.FooterLinks>
@@ -21,9 +21,9 @@ const Footer = () => {
   <img
     src={Tele}
     alt="Téléphone"
-    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px", }}
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginLeft: "20px", }}
   />
-   <span style={{ color: "white" }}>Téléphone:</span>
+   <span style={{ color: "white",  }}>Téléphone:</span>
 </a>
 
 
@@ -31,9 +31,9 @@ const Footer = () => {
   <img
     src={Mail}
     alt="E-Mail"
-    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px" }}
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginLeft: "20px" }} 
   />
-  <span style={{ color: "white" }}>E-Mail:</span>
+  <span style={{ color: "white", marginRight: "28%" }}>E-Mail:</span>
 </a>
 
 
@@ -41,9 +41,9 @@ const Footer = () => {
   <img
     src={Localisation}
     alt="Adresse"
-    style={{ width: "32px", height: "25px", flexShrink: 0, marginRight: "10px"  }}
+    style={{ width: "32px", height: "25px", flexShrink: 0, marginLeft: "29px"  }}
   />
-   <span style={{ color: "white" }}>Adresse:</span>
+   <span style={{ color: "white", marginRight: "29%" }}>Adresse:</span>
 </a>
   
   
@@ -52,7 +52,7 @@ const Footer = () => {
        
       </S.FooterContent>
       <S.FooterCopyright>
-        {/* Ajoutez ici le texte de copyright */}
+       
         © 2023 AssoFacTory. Tous Droits Réservés.
       </S.FooterCopyright>
     </S.MainContainer>
