@@ -6,7 +6,7 @@ export const MainContainer = styled("div")`
   background: linear-gradient(180deg, rgba(155, 37, 37, 0.00) 0%, rgba(220, 80, 2, 0.46) 29.17%, #BE0000 92.71%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   color: white; /* Couleur du texte */
-  margin-top: 90%;
+  /* margin-top: 90%; */
   text-align: center;
   
 

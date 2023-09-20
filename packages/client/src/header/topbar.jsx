@@ -21,8 +21,6 @@ import * as S from "./topbar.styled";
 import Logo from "../logo/Logo.gif";
 import FormConnexion from "../compenents/FormConnexion";
 
-
-
 const menuItemsArray = [
   "accueil",
   "blog",
@@ -53,9 +51,7 @@ export default function DrawerAppBar() {
 
   const drawer = (
     <Box
-      // onClick={handleDrawerToggle}
       sx={{
-        // height: "100%",
         textAlign: "center",
         background:
           "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
@@ -81,8 +77,7 @@ export default function DrawerAppBar() {
         fontFamily="Wallpoet"
         sx={{ my: 2, color: "white" }}
       >
-        
-  AssoFacTory
+        AssoFacTory
       </Typography>
       <List
         sx={{
@@ -112,10 +107,8 @@ export default function DrawerAppBar() {
                   fontWeight: "400",
                   fontFamily: "Wallpoet",
                 }}
-                
               />
             </ListItemButton>
-            
           </ListItem>
         ))}
       </List>
@@ -131,13 +124,12 @@ export default function DrawerAppBar() {
           display: "flex",
         }}
       >
-
         <CssBaseline />
         <AppBar component="nav">
           <Toolbar
             sx={{
               display: "flex",
-              justifyContent: "end",
+              justifyContent: "space-between",
               width: "100%",
               color: "black",
               background: "transparent",
@@ -152,28 +144,30 @@ export default function DrawerAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h4"
-              fontFamily='"Wallpoet", cursive'
-              color="#5E0202"
-              textAlign="center"
-              fontSize="32px"
-              fontStyle="normal"
-              fontWeight="400"
-              lineHeight="normal"
-              component="div"
-              onClick={() => navigate("/")}
-              sx={{
-                my: 2,
-                opacity: 0.8,
-                flexGrow: 1,
-                display: { xs: "none", sm: "block" },
-                cursor: "pointer",
-              }}
-            >
-              <S.Img src={Logo} alt="Logo"  style={{ width: "54px", height: "46px", marginRight: "40px" }} />
-              AssoFacTory
-            </Typography>
+            <S.LogoText>
+              <S.Img
+                src={Logo}
+                alt="Logo"
+                style={{ width: "54px", height: "46px", marginRight: "40px" }}
+              />
+
+              <Typography
+                variant="h4"
+                fontFamily='"Wallpoet", cursive'
+                color="#5E0202"
+                onClick={() => navigate("/")}
+                sx={{
+                  my: 2,
+                  opacity: 0.8,
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                  cursor: "pointer",
+                }}
+              >
+                AssoFacTory
+              </Typography>
+            </S.LogoText>
+            <div></div>
             <ClickAwayListener
               mouseEvent="onMouseDown"
               touchEvent="onTouchStart"
