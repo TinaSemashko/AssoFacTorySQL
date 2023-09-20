@@ -107,7 +107,7 @@ export const FlexContainer = styled("div")`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-   border-radius: 20px; 
+  border-radius: 20px;
   /* width: 30vw;
     height: 70vh;
     background-color: #1d5a43; */
@@ -131,4 +131,11 @@ export const Inscrivez = styled("div")`
 export const Form = styled("div")`
   color: white;
   padding-bottom: 10%;
+`;
+
+export const LogoText = styled("div")`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
 `;
