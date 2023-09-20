@@ -7,10 +7,10 @@ import * as S from "./blockWall.styled";
 
 const blockWall = ({ dataBlock }) => {
   const datatime = dayjs();
+
   // const [userdata, setUserdata] = useState();
 
   // const userId = localStorage.getItem("usrCourant");
-  //console.log(auth);
 
   // const fetchGet = async () => {
   //   const request = {
@@ -30,7 +30,7 @@ const blockWall = ({ dataBlock }) => {
   // };
 
   return (
-    <S.MainContainer>
+    <S.MainContainer idSalon={dataBlock.id_salon}>
       {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
       {/* <S.MyTimeField defaultValue={datatime} disableFuture /> */}
       <S.Author>

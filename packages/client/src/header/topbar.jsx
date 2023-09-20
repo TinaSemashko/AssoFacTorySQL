@@ -44,7 +44,6 @@ export default function DrawerAppBar() {
   };
 
   const navigateItem = (item) => {
-    console.log(item);
     if (item === "accueil") navigate("/");
     else navigate(item);
   };

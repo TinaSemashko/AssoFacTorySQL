@@ -26,6 +26,7 @@ router.get("/users", getAllUsers(userModel));
 router.post("/createuser", createNewUser(userModel));
 router.get("/posts", getAllPosts(postModel));
 router.post("/createpost", createNewPost(postModel));
+// router.post("/uploadimages", uploadImages(postModel));
 router.get("/salons", getSalons(salonsModel));
 
 export default router;

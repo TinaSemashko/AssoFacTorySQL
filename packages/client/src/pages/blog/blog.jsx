@@ -8,7 +8,11 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import BlockWall from "../components/blockWall/blockWall";
 import Spinner from "@mui/material/CircularProgress";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
+import {
+  uploadImageToImgur,
+  uploadImageToImgBB,
+  uploadImageToCloudinary,
+} from "./imageService.js";
 import { IconButton, Input } from "@mui/material";
 import axios from "../../axios.js";
 import { useSnackbar } from "notistack";
@@ -69,7 +73,7 @@ const Blog = () => {
     fetchGet();
   }, [selectedIndex]);
 
-  const handleUpload = (event) => {
+  const handleUpload = async (event) => {
     if (event.target.files) {
       const selectedFile = event.target.files[0];
       const storageRef = ref(storage, "images/");
@@ -156,19 +160,24 @@ const Blog = () => {
           <Spinner size={120} />
         )}
       </S.Filter>
-      <S.GridCadre>
-        {postdata ? (
-          postdata.map((item) => <BlockWall dataBlock={item} />)
-        ) : (
-          <Spinner size={120} />
-        )}
-      </S.GridCadre>
+      {!postdata ? (
+        <Spinner />
+      ) : (
+        <S.GridCadre idSalon={selectedIndex + 1}>
+          {postdata?.map((item) => (
+            <div key={item.id}>
+              <BlockWall dataBlock={item} />
+            </div>
+          ))}
+        </S.GridCadre>
+      )}
+
       {/* <S.GridCadre>
         {componentList.map((el, index) => (
           <div key={index}>{el}</div>
         ))}
       </S.GridCadre> */}
-      <S.GridSendBox>
+      <S.GridSendBox idSalon={selectedIndex + 1}>
         <Box
           component="form"
           sx={{

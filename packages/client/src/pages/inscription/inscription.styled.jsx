@@ -115,9 +115,7 @@ export const Img2 = styled("img")`
   align-items: center;
   margin-top: 3rem;
 
-  u{
+  u {
     color: white;
   }
 `;
-
-

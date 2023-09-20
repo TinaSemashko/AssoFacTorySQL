@@ -34,6 +34,39 @@ app.use((req, res, next) => {
 
 app.use("/api/", usersRoutes);
 
+app.post("/api/upload", async (req, res) => {
+  try {
+    const { apiKey, imageFile } = req.body;
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: formData,
+    };
+
+    const response = await fetch(
+      "https://api.imgbb.com/1/upload",
+      requestOptions
+    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error("Ошибка при загрузке фотографии на ImgBB");
+    }
+
+    const imageUrl = data.data.url;
+    res.json({ imageUrl });
+  } catch (error) {
+    console.error("Произошла ошибка:", error);
+    res.status(500).json({ error: "Произошла ошибка" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port},http://localhost:${port}.`);
 });

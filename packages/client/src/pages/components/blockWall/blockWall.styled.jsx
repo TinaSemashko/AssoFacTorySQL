@@ -1,17 +1,27 @@
 import { styled } from "@mui/material/styles";
 import { TimeField } from "@mui/x-date-pickers";
 
-export const MainContainer = styled("div")`
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+export const MainContainer = styled("div")(
+  ({ idSalon, theme }) => `
+
   padding: 4vh;
   width: 55vw;
   border-radius: 16px;
-  box-shadow: 0px 4px 4px grey;
+  // box-shadow: 0px 4px 4px grey;
   margin-bottom: 4vh;
   display: flex;
   flex-direction: column;
   justify-content: left;
-`;
+     background-color: ${
+       idSalon === 1
+         ? theme.palette.colorRed.main
+         : idSalon === 2
+         ? theme.palette.secondary.main
+         : theme.palette.colorBlue.main
+     };
+  
+`
+);
 
 export const Img = styled("img")`
   width: 20vw;

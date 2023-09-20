@@ -10,10 +10,10 @@ export const MainContainer = styled("div")`
   background-color: ${({ theme }) => theme.palette.colorOrangeBlog.main};
 `;
 
-export const GridCadre = styled("div")`
+export const GridCadre = styled("div")(
+  ({ idSalon, theme }) => `
   width: 80%;
   margin-left: 12vw;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
   border: solid 3px;
   border-radius: 20px;
   box-shadow: 5px 14px 12px 4px #00000080;
@@ -22,20 +22,36 @@ export const GridCadre = styled("div")`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 4vh;
+  /* padding-top: 4vh; */
+
+  background-color: ${
+    idSalon === 1
+      ? theme.palette.colorRed.main
+      : idSalon === 2
+      ? theme.palette.secondary.main
+      : theme.palette.colorBlue.main
+  };
 
   @media (max-width: 750px) {
     width: 100%;
   }
-`;
+`
+);
 
-export const GridSendBox = styled("div")`
+export const GridSendBox = styled("div")(
+  ({ idSalon, theme }) => `
   width: 80%;
   margin-left: 12vw;
   margin-top: 4vh;
   height: 15vh;
   box-shadow: 5px 14px 12px 4px #00000080;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${
+    idSalon === 1
+      ? theme.palette.colorRed.main
+      : idSalon === 2
+      ? theme.palette.secondary.main
+      : theme.palette.colorBlue.main
+  };
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -49,7 +65,8 @@ export const GridSendBox = styled("div")`
   @media (max-width: 750px) {
     width: 100%;
   }
-`;
+`
+);
 
 export const GridImg = styled("div")`
   background-color: ${({ theme }) => theme.palette.colorOrangeBlog.main};
