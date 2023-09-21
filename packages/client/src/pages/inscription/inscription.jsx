@@ -100,10 +100,11 @@ export default function Inscription() {
   };
 
   useEffect(() => {
-    if (newUserId)
+    if (newUserId) {
       enqueueSnackbar("L'utilisateur est créé avec succès", {
         variant: "success",
       });
+    }
   }, [newUserId]);
 
   const showError = (err) => {

@@ -11,3 +11,11 @@ export const getComments = async () => {
 
   return null;
 };
+
+export const createComment = async (data) => {
+  const results = await knex(table)
+    .insert({ ...data })
+    .returning("id");
+
+  return results[0];
+};
