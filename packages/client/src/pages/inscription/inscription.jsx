@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import videoInscription from "../../videos/videoInscription.mp4";
 import Grid from "@mui/system/Unstable_Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -7,26 +7,24 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Box from "@mui/system/Box";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { IconButton, Input } from "@mui/material";
+import { useSnackbar } from "notistack";
+import axios from "../../axios";
 import { BackGroundGradientInscription } from "../../shared/shared.styled";
 import UpLoad from "../../images/UpLoad.png";
 
 import * as S from "./inscription.styled";
 
-import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router";
-
 export default function Inscription() {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [newUserId, setNewUserId] = useState(0);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -39,18 +37,78 @@ export default function Inscription() {
     genre: "",
     email: "",
     password: "",
-    // photo: ,
+    photo: null,
   });
 
   const { prenom, genre, email, password, photo } = user;
 
   const onInputChange = (event) => {
     setUser({ ...user, [event.target?.name]: event.target?.value });
-    console.log(user);
   };
 
   const openTopbar = () => {
     document.querySelector("#iconbutton").click();
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const handleUpload = async (event) => {
+    if (event.target.files) {
+      const base64Data = await convertToBase64(event.target.files[0]);
+      console.log(base64Data);
+      setUser({ ...user, photo: base64Data });
+    }
+  };
+
+  console.log(user);
+
+  const fetchPost = async () => {
+    const request = {
+      data: user,
+    };
+    await axios
+      .post(`createuser`, request)
+      .then((response) => setNewUserId(response.data.results))
+      .catch((err) => {
+        showError(err);
+      });
+  };
+
+  const setUp = async () => {
+    if (
+      user.email !== "" &&
+      user.genre !== "" &&
+      user.password !== "" &&
+      user.prenom !== ""
+    ) {
+      fetchPost();
+    } else
+      enqueueSnackbar("Corrigez les erreurs dans le formulaire", {
+        variant: "error",
+      });
+  };
+
+  useEffect(() => {
+    if (newUserId)
+      enqueueSnackbar("L'utilisateur est créé avec succès", {
+        variant: "success",
+      });
+  }, [newUserId]);
+
+  const showError = (err) => {
+    enqueueSnackbar("Quelque chose ne va pas", { variant: "error" });
+    console.error(err);
   };
 
   return (
@@ -260,14 +318,21 @@ export default function Inscription() {
                           </FormControl>
                         </Box>
                       </S.FlexContainerPass>
-                      <S.Img2
-                        src={UpLoad}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        onClick={() => console.log("click")}
-                      />
-
+                      <S.ButtonUpload variant="contained" component="label">
+                        <S.Img2
+                          src={UpLoad}
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                        <Input
+                          style={{ display: "none" }}
+                          type="file"
+                          hidden
+                          onChange={handleUpload}
+                          name="[licenseFile]"
+                        />
+                      </S.ButtonUpload>
                       <Typography
                         variant="h6"
                         sx={{
@@ -277,10 +342,10 @@ export default function Inscription() {
                         Choisissez votre photo de profil
                       </Typography>
 
-                      <Button
+                      <S.ButtonValider
                         variant="contained"
                         size="medium"
-                        // onClick={() => setUp()}
+                        onClick={() => setUp()}
                         sx={{
                           m: 1,
                           backgroundColor: "green",
@@ -290,7 +355,7 @@ export default function Inscription() {
                         }}
                       >
                         Valider
-                      </Button>
+                      </S.ButtonValider>
                       <S.Inscrivez>
                         Déja Inscrit ?
                         <u

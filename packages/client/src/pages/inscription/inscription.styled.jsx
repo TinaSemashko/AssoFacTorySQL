@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "@mui/material/Button";
 
 export const Container = styled("div")`
   width: 100%;
@@ -102,7 +103,7 @@ export const RadioButton = styled("div")`
   color: white;
 `;
 
-export const Button = styled("div")`
+export const ButtonValider = styled(Button)`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -113,9 +114,19 @@ export const Img2 = styled("img")`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 
   u {
     color: white;
+  }
+`;
+
+export const ButtonUpload = styled(Button)`
+  && {
+    /* margin-top: 5%; */
+    width: 10vw;
+    height: 18vh;
+    border-radius: 100%;
+    background-color: "transparent";
   }
 `;

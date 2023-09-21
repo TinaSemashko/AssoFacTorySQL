@@ -16,10 +16,10 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
-
-import * as S from "./topbar.styled";
 import Logo from "../logo/Logo.gif";
 import FormConnexion from "../compenents/FormConnexion";
+
+import * as S from "./topbar.styled";
 
 const menuItemsArray = [
   "accueil",

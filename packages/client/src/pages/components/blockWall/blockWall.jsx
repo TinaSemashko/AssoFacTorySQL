@@ -1,40 +1,12 @@
 import { Typography } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useEffect, useState } from "react";
-import dayjs from "dayjs";
+
 import * as S from "./blockWall.styled";
 
 const blockWall = ({ dataBlock }) => {
-  const datatime = dayjs();
-
-  // const [userdata, setUserdata] = useState();
-
-  // const userId = localStorage.getItem("usrCourant");
-
-  // const fetchGet = async () => {
-  //   const request = {
-  //     params: {
-  //       email: user.email,
-  //       password: user.password,
-  //     },
-  //   };
-  //   await axios
-  //     .get(`user`, request)
-  //     .then((response) => {
-  //       setUserdata(response.data.results[0]);
-  //     })
-  //     .catch((err) => {
-  //       showError(err);
-  //     });
-  // };
-
   return (
     <S.MainContainer idSalon={dataBlock.id_salon}>
-      {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
-      {/* <S.MyTimeField defaultValue={datatime} disableFuture /> */}
       <S.Author>
-        <Typography variant="h6"> {dataBlock.user}</Typography>
+        <Typography variant="h6"> {dataBlock.prenom}</Typography>
       </S.Author>
       <S.Time>
         <Typography variant="h6"> {dataBlock.time}</Typography>
@@ -43,7 +15,6 @@ const blockWall = ({ dataBlock }) => {
       <S.Text>
         <Typography variant="h6"> {dataBlock.message}</Typography>
       </S.Text>
-      {/* </LocalizationProvider> */}
     </S.MainContainer>
   );
 };

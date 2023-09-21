@@ -13,7 +13,9 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (email, password) => {
-  const results = await knex(table).select("*").where({ email, password });
+  const results = await knex(table)
+    .select(knex.raw("ENCODE(photo, 'base64') as photo"), "prenom", "email")
+    .where({ email, password });
 
   if (results && results.length) {
     return results[0];
@@ -42,8 +44,9 @@ export const getUserById = async (id) => {
 // };
 
 export const createUser = async (data) => {
+  const photoBuffer = Buffer.from(data.photo, "base64");
   const results = await knex(table)
-    .insert({ ...data })
+    .insert({ ...data, photo: photoBuffer })
     .returning("id");
 
   return results[0];

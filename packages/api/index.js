@@ -1,20 +1,10 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
 
 import usersRoutes from "./routes.js";
 
 const app = express();
 const port = 4000;
-
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-
-app.use(express.json());
 
 // CORS implemented so that we don't get errors when trying to access the server from a different server location
 
@@ -31,6 +21,9 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
 
 app.use("/api/", usersRoutes);
 
