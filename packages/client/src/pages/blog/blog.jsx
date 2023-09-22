@@ -13,6 +13,8 @@ import { IconButton, Input } from "@mui/material";
 import axios from "../../axios.js";
 import { useSnackbar } from "notistack";
 import Clock from "../../shared/clock";
+import storage from "../../service/firebase";
+import { ref, uploadBytes, uploadString } from "firebase/storage";
 
 import * as S from "./blog.styled";
 
@@ -69,6 +71,18 @@ const Blog = () => {
 
   const handleUpload = (event) => {
     if (event.target.files) {
+      const selectedFile = event.target.files[0];
+      const storageRef = ref(storage, "images/");
+      uploadBytes(storageRef, selectedFile)
+        .then((snapshot) => {
+          enqueueSnackbar("l'image a été ajouté à la bdd", {
+            variant: "success",
+          });
+        })
+        .catch((err) => {
+          showError(err, "l'image n'a pas été ajouté à la bdd");
+        });
+
       setPost({ ...post, media: URL.createObjectURL(event.target.files[0]) });
     }
   };
