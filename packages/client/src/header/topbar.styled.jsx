@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const Container = styled("div")`
   overflow-x: hidden;
@@ -8,7 +9,6 @@ export const CloseIconStyle = styled("div")`
   display: flex;
   justify-content: end;
   align-items: center;
-  /* color: #000000; */
 
   .close {
     text-transform: capitalize;
@@ -62,7 +62,6 @@ export const Img = styled("img")`
 
 export const CContainer = styled("div")`
   width: 100%;
-  /* height: 100vh; */
 
   @media (max-width: 750px) {
     display: flex;
@@ -81,25 +80,15 @@ export const Item = styled("div")`
   }
 `;
 
-// // export const Image = styled("img")`
-// //   width: 50vw;
-// //   height: 100vh;
-
-// //   @media (max-width: 750px) {
-// //     width: 100vw;
-//    }
-// `;
-
 export const FormContainer = styled("div")`
-  padding-top: 12rem;
-  margin-left: -35rem;
+  padding-top: 25vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: space-evenly;
   height: 10vh;
   padding-bottom: 15vh;
-  color: white;
+  color: ${({ theme }) => theme.palette.colorWhite.main};
 `;
 
 export const FlexContainer = styled("div")`
@@ -108,19 +97,20 @@ export const FlexContainer = styled("div")`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  /* width: 30vw;
-    height: 70vh;
-    background-color: #1d5a43; */
-  /* padding-top: 2rem;
-    padding-bottom: 2rem; */
 
   @media (max-width: 750px) {
     width: 80vw;
   }
 `;
 
+export const InputContainer = styled("div")(
+  ({ isInscrit }) => `
+display: ${isInscrit ? "none" : "block"};
+`
+);
+
 export const Inscrivez = styled("div")`
-  color: white;
+  color: ${({ theme }) => theme.palette.colorWhite.main};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,7 +119,7 @@ export const Inscrivez = styled("div")`
 `;
 
 export const Form = styled("div")`
-  color: white;
+  color: ${({ theme }) => theme.palette.colorWhite.main};
   padding-bottom: 10%;
 `;
 
@@ -139,3 +129,32 @@ export const LogoText = styled("div")`
   justify-content: center;
   align-items: center;
 `;
+
+export const Prenom = styled("div")(
+  ({ isInscrit, theme }) => `
+  display: ${isInscrit ? "flex" : "none"};
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: solid;
+  border-color: ${theme.palette.colorViolet.main};
+  background-color: ${theme.palette.colorViolet.main};
+  color: ${theme.palette.colorBlack.main};
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  min-width: 10vw;
+`
+);
+
+export const ButtonLogin = styled(Button)(
+  ({ isInscrit, theme }) => `
+  margin:  1vw;
+  background-color: ${isInscrit ? "transparent" : theme.palette.secondary.main};
+  border: solid black;
+  width: 10vw;
+  border-radius: 20px;
+  color: ${theme.palette.colorBlack.main};
+`
+);

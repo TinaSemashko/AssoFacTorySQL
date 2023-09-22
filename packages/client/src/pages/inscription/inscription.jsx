@@ -14,6 +14,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { IconButton, Input } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import { useSnackbar } from "notistack";
 import axios from "../../axios";
 import { BackGroundGradientInscription } from "../../shared/shared.styled";
@@ -25,7 +26,7 @@ export default function Inscription() {
   const [showPassword, setShowPassword] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const [newUserId, setNewUserId] = useState(0);
-
+  const [dataUrl, setDataUrl] = useState(UpLoad);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -66,7 +67,7 @@ export default function Inscription() {
   const handleUpload = async (event) => {
     if (event.target.files) {
       const base64Data = await convertToBase64(event.target.files[0]);
-      console.log(base64Data);
+      setDataUrl(URL.createObjectURL(event.target.files[0]));
       setUser({ ...user, photo: base64Data });
     }
   };
@@ -130,6 +131,7 @@ export default function Inscription() {
                   pb={6}
                   sx={{
                     textAlign: "center",
+                    justifyContent: "center",
                   }}
                 >
                   Inscription
@@ -138,9 +140,10 @@ export default function Inscription() {
                   component="form"
                   sx={{
                     "& .MuiOutlinedInput-root": {
-                      borderRadius: "20px",
+                      borderRadius: "15px",
                       "& fieldset": {
                         borderColor: "red",
+                        height: "8vh",
                       },
                       "&:hover fieldset": {
                         borderColor: "red",
@@ -164,41 +167,44 @@ export default function Inscription() {
                           name="prenom"
                           onChange={(e) => onInputChange(e)}
                           placeholder="Entrez votre prénom..."
-                          // color="warning"
                           sx={{
-                            borderRadius: "20px",
-
+                            borderRadius: "15px",
+                            height: "7vh",
                             "& .MuiFormLabel-root.Mui-focused ": {
                               color: "colorOrangeed701d.main",
                             },
 
                             m: 1,
                             width: { xs: "50vw", md: "25vw" },
-                            backgroundColor: " white",
+                            backgroundColor: "colorWhite.main",
+                            boxShadow: " 0px 8px 8px #566573  inset",
+                            textAlign: "center",
+                          }}
+                        />
+                      </S.FlexContainerNom>
+                      <S.FlexContainerNom>
+                        <TextField
+                          required
+                          id="Email"
+                          label="Email"
+                          value={email}
+                          name="email"
+                          onChange={(e) => onInputChange(e)}
+                          placeholder="Entrez votre Email"
+                          color="secondary"
+                          sx={{
+                            borderRadius: "15px",
+                            height: "7vh",
+                            "& .MuiFormLabel-root.Mui-focused ": {
+                              color: "colorOrangeed701d.main",
+                            },
+                            m: 1,
+                            width: { xs: "50vw", md: "25vw" },
+                            backgroundColor: "colorWhite.main",
                             boxShadow: " 0px 8px 8px #566573  inset",
                           }}
                         />
                       </S.FlexContainerNom>
-                      <TextField
-                        required
-                        id="Email"
-                        label="Email"
-                        value={email}
-                        name="email"
-                        onChange={(e) => onInputChange(e)}
-                        placeholder="Entrez votre Email"
-                        color="secondary"
-                        sx={{
-                          borderRadius: "20px",
-                          "& .MuiFormLabel-root.Mui-focused ": {
-                            color: "colorOrangeed701d.main",
-                          },
-                          m: 1,
-                          width: { xs: "50vw", md: "25vw" },
-                          backgroundColor: " white",
-                          boxShadow: " 0px 8px 8px #566573  inset",
-                        }}
-                      />
                       <FormControl>
                         <S.RadioButton>
                           <div>Genre:&nbsp;&nbsp;</div>
@@ -209,9 +215,9 @@ export default function Inscription() {
                             value={genre}
                             onChange={(e) => onInputChange(e)}
                             sx={{
-                              color: "white",
+                              color: "colorWhite.main",
                               "&.Mui-checked": {
-                                color: "#ff9a23",
+                                color: "colorOrange.main",
                               },
                             }}
                           >
@@ -220,9 +226,9 @@ export default function Inscription() {
                               control={
                                 <Radio
                                   sx={{
-                                    color: "#ff9a23",
+                                    color: "colorOrange.main",
                                     "&.Mui-checked": {
-                                      color: "#ff9a23",
+                                      color: "colorOrange.main",
                                     },
                                   }}
                                 />
@@ -236,7 +242,7 @@ export default function Inscription() {
                                   sx={{
                                     color: "white",
                                     "&, &.Mui-checked": {
-                                      color: "#ff9a23",
+                                      color: "colorOrange.main",
                                     },
                                   }}
                                 />
@@ -250,7 +256,7 @@ export default function Inscription() {
                                   sx={{
                                     color: "white",
                                     "&, &.Mui-checked": {
-                                      color: "#ff9a23",
+                                      color: "colorOrange.main",
                                     },
                                   }}
                                 />
@@ -271,6 +277,7 @@ export default function Inscription() {
                         >
                           <FormControl
                             sx={{
+                              height: "7vh",
                               "& .MuiFormLabel-root.Mui-focused ": {
                                 color: "colorOrangeed701d.main",
                               },
@@ -292,7 +299,11 @@ export default function Inscription() {
                               type={showPassword ? "text" : "password"}
                               color="secondary"
                               sx={{
-                                borderRadius: "10px",
+                                height: "7vh",
+                                width: { xs: "50vw", md: "25vw" },
+                                textAlign: "center",
+                                justifyContent: "center",
+                                borderRadius: "15px",
                                 backgroundColor: " white",
                                 boxShadow: " 0px 8px 8px #566573  inset",
                               }}
@@ -320,18 +331,17 @@ export default function Inscription() {
                         </Box>
                       </S.FlexContainerPass>
                       <S.ButtonUpload variant="contained" component="label">
-                        <S.Img2
-                          src={UpLoad}
-                          style={{
-                            cursor: "pointer",
-                          }}
+                        <Avatar
+                          alt="user"
+                          src={dataUrl}
+                          sx={{ width: 130, height: 130 }}
                         />
                         <Input
                           style={{ display: "none" }}
                           type="file"
                           hidden
                           onChange={handleUpload}
-                          name="[licenseFile]"
+                          name="userphoto"
                         />
                       </S.ButtonUpload>
                       <Typography
