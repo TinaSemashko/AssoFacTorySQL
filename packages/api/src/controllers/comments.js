@@ -1,9 +1,20 @@
 export const getAllComments = (model) => async (req, res) => {
-  const post = await model.getComments();
+  const comment = await model.getComments();
 
-  if (!post) {
+  if (!comment) {
     return res.status(404).send({ message: "No comments" });
   }
 
-  res.send({ results: [post] });
+  res.send({ results: [comment] });
+};
+
+export const createNewComment = (model) => async (req, res) => {
+  const { data } = req.body;
+  const commentId = await model.createPost(data);
+
+  if (!commentId) {
+    return res.status(404).send({ message: "Something went wrong..." });
+  }
+
+  res.send({ results: [commentId] });
 };

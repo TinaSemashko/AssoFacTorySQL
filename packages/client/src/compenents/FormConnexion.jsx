@@ -3,7 +3,7 @@ import * as S from "../header/topbar.styled";
 import Grid from "@mui/system/Unstable_Grid";
 import Box from "@mui/system/Box";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+
 // import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -12,7 +12,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-// import Cookies from "js-cookie";
+import Avatar from "@mui/material/Avatar";
+import axios from "../axios";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
 
@@ -21,26 +22,20 @@ export default function FormConnexion() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const [dataUrl, setDataUrl] = useState("");
+  const [isInscrit, setIsInscrit] = useState(false);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const userdataInitialState = {
-    nom: "",
-    prenom: "",
-    genre: "",
-    email: "",
-    password: "",
-    abonnement: false,
-  };
+  // const userIdCourant = localStorage.getItem("usrCourant");
 
-  const [users, setUsers] = useState(userdataInitialState); //information bd
+  const [userdata, setUserdata] = useState(); //information bd
   const [user, setUser] = useState({
-    // information form
     email: "",
     password: "",
-  });
+  }); // information form
 
   const { email, password } = user;
 
@@ -52,46 +47,48 @@ export default function FormConnexion() {
     enqueueSnackbar("Utilisateur inconnu", {
       variant: "error",
     });
-    console.log(error);
+    console.error(error);
+  };
+
+  const fetchGet = async () => {
+    const request = {
+      params: {
+        email: user.email,
+        password: user.password,
+      },
+    };
+    await axios
+      .get(`user`, request)
+      .then((response) => {
+        setUserdata(response.data.results[0]);
+      })
+      .catch((err) => {
+        showError(err);
+      });
   };
 
   const getUser = async () => {
-    // try {
-    //   const data = await UsersService.getUserCheck(user?.email, user?.password);
-    //   if (data[0].nom) {
-    //     setUsers(data[0]);
-    //   } else
-    //     enqueueSnackbar("Utilisateur inconnu", {
-    //       variant: "error",
-    //     });
-    // } catch (error) {
-    //   showError(error);
-    // }
+    if (isInscrit) {
+      localStorage.setItem("usrCourant", userdata.Id);
+      setIsInscrit(false);
+    } else fetchGet();
   };
 
-  // const Redirect = useCallback(() => {
-  //   enqueueSnackbar("Vous vous êtes connecté avec succès", {
-  //     variant: "success",
-  //   });
-  //   navigate("/profil");
-  // }, [navigate]);
-
-  // useEffect(() => {
-  //   if (users.nom) {
-  //     Cookies.set("prenom", users.prenom);
-  //     Cookies.set("nom", users.nom);
-  //     Redirect();
-  //   }
-  // }, [users, Redirect]);
+  useEffect(() => {
+    if (userdata) {
+      localStorage.setItem("usrCourant", userdata.Id);
+      setIsInscrit(true);
+      console.log("userIdCourant " + userdata.Id);
+      setDataUrl(`data:image/jpeg;base64,${userdata.photo.slice(20)}`);
+    } else setIsInscrit(false);
+  }, [userdata]);
 
   return (
     <S.CContainer>
       <Box sx={{ width: "70%" }}>
         <Grid container rowSpacing={0} columnSpacing={0}>
-          <Grid xs={12} md={6}>
-            {/* <S.Item>
-              <S.Img src={fdconnexion} />
-            </S.Item> */}
+          <Grid xs={12} md={6} sx={{ ml: 1 }}>
+            <Avatar alt="user" src={dataUrl} sx={{ width: 80, height: 80 }} />
           </Grid>
           <Grid xs={12} md={6}>
             <S.Item>
@@ -100,7 +97,6 @@ export default function FormConnexion() {
                   component="form"
                   sx={{
                     "& .MuiTextField-root": {
-                      m: 3,
                       width: { xs: "30vw", md: "15vw" },
                       borderRadius: "10px",
                     },
@@ -109,88 +105,87 @@ export default function FormConnexion() {
                   autoComplete="off"
                 >
                   <S.FlexContainer>
-                    <TextField
-                      required
-                      id="Email"
-                      label="Email"
-                      name="email"
-                      value={email}
-                      placeholder="Entrez votre Email"
-                      color="secondary"
-                      fullWidth
-                      onChange={(event) => onInputChange(event)}
-                      sx={{
-                        backgroundColor: " grey",
-                        boxShadow: " 0px 8px 8px #566573  inset",
-                      }}
-                    />
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <FormControl
-                        sx={{ m: 1, width: { xs: "30vw", md: "15vw" } }}
-                        variant="outlined"
+                    <S.InputContainer isInscrit={isInscrit}>
+                      <TextField
+                        required
+                        id="Email"
+                        label="Email"
+                        name="email"
+                        value={email}
+                        placeholder="Entrez votre Email"
+                        color="secondary"
+                        fullWidth
+                        onChange={(event) => onInputChange(event)}
+                        sx={{
+                          backgroundColor: " grey",
+                          boxShadow: " 0px 8px 8px #566573  inset",
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                        }}
                       >
-                        <InputLabel
-                          htmlFor="outlined-adornment-password"
-                          color="secondary"
+                        <FormControl
+                          sx={{ m: 1, width: { xs: "30vw", md: "15vw" } }}
+                          variant="outlined"
                         >
-                          Mot de passe
-                        </InputLabel>
-                        <OutlinedInput
-                          id="outlined-adornment-password"
-                          type={showPassword ? "text" : "password"}
-                          color="secondary"
-                          fullWidth
-                          autoComplete="new-password"
-                          name="password"
-                          value={password}
-                          onChange={(event) => onInputChange(event)}
-                          sx={{
-                            backgroundColor: " grey",
-                            boxShadow: " 0px 8px 8px #566573  inset",
-                          }}
-                          endAdornment={
-                            <InputAdornment position="end">
-                              <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                              >
-                                {showPassword ? (
-                                  <VisibilityOff />
-                                ) : (
-                                  <Visibility />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          }
-                          label="Password"
-                        />
-                      </FormControl>
-                    </Box>
+                          <InputLabel
+                            htmlFor="outlined-adornment-password"
+                            color="secondary"
+                          >
+                            Mot de passe
+                          </InputLabel>
+                          <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? "text" : "password"}
+                            color="secondary"
+                            fullWidth
+                            autoComplete="new-password"
+                            name="password"
+                            value={password}
+                            onChange={(event) => onInputChange(event)}
+                            sx={{
+                              backgroundColor: " grey",
+                              boxShadow: " 0px 8px 8px #566573  inset",
+                            }}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  onMouseDown={handleMouseDownPassword}
+                                >
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                            label="Password"
+                          />
+                        </FormControl>
+                      </Box>
+                    </S.InputContainer>
+                    <S.Prenom isInscrit={isInscrit}>
+                      {userdata ? userdata.prenom : ""}
+                    </S.Prenom>
 
-                    <Button
+                    <S.ButtonLogin
+                      isInscrit={isInscrit}
                       variant="contained"
                       size="medium"
                       onClick={() => getUser()}
-                      sx={{
-                        m: 1,
-                        backgroundColor: "#B4F573",
-                        boxShadow: " 0px 4px 4px #566573 ",
-                        width: "10vw",
-                        borderRadius: "10px",
-                      }}
                     >
-                      LOG IN
-                    </Button>
+                      {isInscrit ? "LOG OUT" : "LOG IN"}
+                    </S.ButtonLogin>
                   </S.FlexContainer>
                 </Box>
                 <S.Inscrivez>
-                  Vous n’avez pas encore de compte!{" "}
+                  Vous n’avez pas encore de compte!
                   <u
                     style={{
                       cursor: "pointer",

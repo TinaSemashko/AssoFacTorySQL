@@ -1,13 +1,9 @@
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 
 export const Container = styled("div")`
   width: 100%;
   height: 100vh;
-
-  * {
-    margin: 0;
-    padding: 0;
-  }
 
   @media (max-width: 750px) {
     display: flex;
@@ -84,10 +80,13 @@ export const Inscrivez = styled("div")`
     color: black;
   }
 `;
+
 export const FlexContainerNom = styled("div")`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
+
 export const FlexControl = styled("div")`
   color: white;
   display: flex;
@@ -102,7 +101,7 @@ export const RadioButton = styled("div")`
   color: white;
 `;
 
-export const Button = styled("div")`
+export const ButtonValider = styled(Button)`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -113,11 +112,17 @@ export const Img2 = styled("img")`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 3rem;
 
-  u{
+  u {
     color: white;
   }
 `;
 
-
+export const ButtonUpload = styled(Button)`
+  && {
+    width: 8vw;
+    height: 18vh;
+    border-radius: 100%;
+    background-color: "transparent";
+  }
+`;

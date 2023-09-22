@@ -3,7 +3,9 @@ import { knex } from "../../db.js";
 export const table = "posts";
 
 export const getPostsAll = async () => {
-  const results = await knex(table).select("*");
+  const results = await knex(table)
+    .select("posts.*", "users.*")
+    .leftJoin("users", "users.id", "posts.id_user");
 
   if (results && results.length) {
     return results;
