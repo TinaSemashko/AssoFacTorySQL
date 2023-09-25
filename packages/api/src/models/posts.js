@@ -4,8 +4,16 @@ export const table = "posts";
 
 export const getPostsAll = async () => {
   const results = await knex(table)
-    .select("posts.*", "users.*")
-    .leftJoin("users", "users.id", "posts.id_user");
+    .select(
+      "posts.id",
+      "posts.id_salon",
+      "posts.message",
+      "posts.time",
+      "users.prenom",
+      "posts.media"
+    )
+    .leftJoin("users", "posts.id_user", "users.id")
+    .orderBy([{ column: "id_salon" }, { column: "time" }]);
 
   if (results && results.length) {
     return results;

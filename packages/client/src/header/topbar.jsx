@@ -13,7 +13,10 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import axios from "../axios";
+import { useSnackbar } from "notistack";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation, useNavigate } from "react-router";
 import Logo from "../logo/Logo.gif";
@@ -35,6 +38,11 @@ export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [dataUrl, setDataUrl] = useState("");
+  const userIdCourant = localStorage.getItem("usrCourant");
+  const userCourantPrenom = localStorage.getItem("usrCourantPrenom");
+  const [userdata, setUserdata] = useState();
+  const { enqueueSnackbar } = useSnackbar();
 
   const isSelected = (item) =>
     pathname.includes(item) || (pathname === "/" && item === "accueil");
@@ -47,6 +55,39 @@ export default function DrawerAppBar() {
     if (item === "accueil") navigate("/");
     else navigate(item);
   };
+
+  const fetchGet = async () => {
+    const request = {
+      params: {
+        id: userIdCourant,
+      },
+    };
+    await axios
+      .get(`getuserbyid`, request)
+      .then((response) => {
+        setUserdata(response.data.results[0]);
+      })
+      .catch((err) => {
+        showError(err);
+      });
+  };
+
+  const showError = (error) => {
+    enqueueSnackbar("Utilisateur inconnu", {
+      variant: "error",
+    });
+    console.error(error);
+  };
+
+  useEffect(() => {
+    if (userIdCourant && !userdata) fetchGet();
+  }, [userIdCourant]);
+
+  useEffect(() => {
+    if (userdata && !(userIdCourant === "" || userIdCourant === undefined)) {
+      setDataUrl(`data:image/jpeg;base64,${userdata.photo.slice(20)}`);
+    } else setDataUrl("");
+  }, [userdata, userIdCourant]);
 
   const drawer = (
     <Box
@@ -166,7 +207,21 @@ export default function DrawerAppBar() {
                 AssoFacTory
               </Typography>
             </S.LogoText>
-            <div></div>
+            <S.PrenomPhoto>
+              <Avatar
+                alt="user"
+                src={dataUrl}
+                sx={{
+                  width: 50,
+                  height: 50,
+                  display: userCourantPrenom ? "flex" : "none",
+                }}
+              />
+              <Typography>
+                {userCourantPrenom ? userCourantPrenom : "Unauthorised user"}
+              </Typography>
+            </S.PrenomPhoto>
+
             <ClickAwayListener
               mouseEvent="onMouseDown"
               touchEvent="onTouchStart"

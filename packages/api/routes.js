@@ -3,6 +3,7 @@ import {
   getAllUsers,
   getProfile,
   createNewUser,
+  getUserById,
 } from "./src/controllers/user.js";
 import * as userModel from "./src/models/user.js";
 import { getAllPosts, createNewPost } from "./src/controllers/posts.js";
@@ -21,10 +22,10 @@ router.get("/", (req, res) => {});
 
 router.get("/user", getProfile(userModel));
 router.get("/users", getAllUsers(userModel));
+router.get("/getuserbyid", getUserById(userModel));
 router.post("/createuser", createNewUser(userModel));
 router.get("/posts", getAllPosts(postModel));
 router.post("/createpost", createNewPost(postModel));
-// router.post("/uploadimages", uploadImages(postModel));
 router.get("/salons", getSalons(salonsModel));
 router.get("/comments", getAllComments(commentsModel));
 router.post("/createcomment", createNewComment(commentsModel));
