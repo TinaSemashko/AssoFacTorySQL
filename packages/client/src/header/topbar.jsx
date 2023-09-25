@@ -48,6 +48,40 @@ export default function DrawerAppBar() {
     else navigate(item);
   };
 
+  const fetchGet = async () => {
+    const request = {
+      params: {
+        id: userIdCourant,
+      },
+    };
+    await axios
+      .get(`getuserbyid`, request)
+      .then((response) => {
+        setUserdata(response.data.results[0]);
+      })
+      .catch((err) => {
+        showError(err);
+      });
+  };
+
+  const showError = (error) => {
+    enqueueSnackbar("Utilisateur inconnu", {
+      variant: "error",
+    });
+    console.error(error);
+  };
+
+  useEffect(() => {
+    if (userIdCourant && (!userdata || userdata.id !== userIdCourant))
+      fetchGet();
+  }, [userIdCourant]);
+
+  useEffect(() => {
+    if (userdata && !(userIdCourant === "" || userIdCourant === undefined)) {
+      setDataUrl(`data:image/jpeg;base64,${userdata.photo.slice(20)}`);
+    } else setDataUrl("");
+  }, [userdata, userIdCourant]);
+
   const drawer = (
     <Box
       sx={{
