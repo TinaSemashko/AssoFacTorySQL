@@ -158,3 +158,10 @@ export const ButtonLogin = styled(Button)(
   color: ${theme.palette.colorBlack.main};
 `
 );
+
+export const PrenomPhoto = styled("div")`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20vw;
+`;

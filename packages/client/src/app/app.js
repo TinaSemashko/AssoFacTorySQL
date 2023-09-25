@@ -45,7 +45,7 @@ export let theme = createTheme({
     colorBlack: {
       main: "#000000",
     },
-    colorRed: {
+    colorRed1: {
       main: "rgba(155, 37, 37, 0)",
     },
     colorOrangeed701d: {
