@@ -8,30 +8,29 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import BlockWall from "../components/blockWall/blockWall";
 import Spinner from "@mui/material/CircularProgress";
 import ListItem from "@mui/material/ListItem";
-import {
-  uploadImageToImgur,
-  uploadImageToImgBB,
-  uploadImageToCloudinary,
-} from "./imageService.js";
 import { IconButton, Input } from "@mui/material";
 import axios from "../../axios.js";
 import { useSnackbar } from "notistack";
 import Clock from "../../shared/clock";
 import storage from "../../service/firebase";
-import { ref, uploadBytes, uploadString } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import * as S from "./blog.styled";
 
 const Blog = () => {
   const { enqueueSnackbar } = useSnackbar();
-  // const [sendmessage, setSendmessage] = useState("");
-  // const [componentList, setComponentList] = useState([]);
-  // const [file, setFile] = useState("");
   const [postdata, setPostdata] = useState([{}]);
   const [post, setPost] = useState({});
   const { id_user, id_salon, message, media, time } = post;
   const [filterItemsArray, setFilterItemsArray] = useState([{}]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [newPostId, setNewPostrId] = useState(0);
+  const [fileImage, setFileImage] = useState(null);
+
+  const userIdCourant = localStorage.getItem("usrCourant");
+  const isAuthorised = userIdCourant !== "" && userIdCourant !== undefined;
+
+  console.log(Clock().toString());
 
   useEffect(() => {
     const fetchGetSalons = async () => {
@@ -57,15 +56,10 @@ const Blog = () => {
     await axios
       .get(`posts`)
       .then((response) => {
-        console.log(selectedIndex);
-        setPostdata(
-          Array.from(response.data.results[0]).filter(
-            (el) => el.id_salon === selectedIndex + 1
-          )
-        );
+        setPostdata(response.data.results[0]);
       })
       .catch((err) => {
-        showError(err, "Il n'y a pas de post");
+        showError(err, "Il n'y a pas des posts");
       });
   };
 
@@ -73,21 +67,35 @@ const Blog = () => {
     fetchGet();
   }, [selectedIndex]);
 
+  const uploadPhotoFirebase = () => {
+    const part1 = Math.trunc(Math.random() * 6 + 1).toString();
+    const fileName =
+      "image_time" +
+      Clock().toString() +
+      "salon" +
+      selectedIndex.toString() +
+      "user" +
+      userIdCourant +
+      part1;
+    console.log("fileName " + fileName);
+    const storageRef = ref(storage, `images/${fileName}`);
+    uploadBytes(storageRef, fileImage)
+      .then((snapshot) => {
+        const downloadURL = getDownloadURL(snapshot.ref);
+        console.log("downloadURL " + downloadURL);
+        setPost({ ...post, media: downloadURL });
+        enqueueSnackbar("l'image a été ajouté à la bdd", {
+          variant: "success",
+        });
+      })
+      .catch((err) => {
+        showError(err, "l'image n'a pas été ajouté à la bdd");
+      });
+  };
+
   const handleUpload = async (event) => {
     if (event.target.files) {
-      const selectedFile = event.target.files[0];
-      const storageRef = ref(storage, "images/");
-      uploadBytes(storageRef, selectedFile)
-        .then((snapshot) => {
-          enqueueSnackbar("l'image a été ajouté à la bdd", {
-            variant: "success",
-          });
-        })
-        .catch((err) => {
-          showError(err, "l'image n'a pas été ajouté à la bdd");
-        });
-
-      setPost({ ...post, media: URL.createObjectURL(event.target.files[0]) });
+      setFileImage(event.target.files[0]);
     }
   };
 
@@ -97,28 +105,34 @@ const Blog = () => {
     };
     await axios
       .post(`createpost`, request)
-      .then((response) => setNewUserId(response.data.results))
+      .then((response) => setNewPostrId(response.data.results))
       .catch((err) => {
         showError(err, "Le post n'a pas créé");
       });
   };
 
-  const sendMessage = (buttonImage = false) => {
-    if ((message !== "" || file !== "") && !buttonImage) {
-      setPost({
-        ...post,
-        time: Clock().toString(),
-        id_salon: selectedIndex + 1,
-        id_user: 1,
-      });
-      console.log(post);
-      fetchPost();
-      // const newComponent = <BlockWall text={sendmessage} imageUrl={file} />;
-      // setComponentList([...componentList, newComponent]);
-      // setSendmessage("");
-      // setFile("");
-    } else return <Spinner size={120} />;
+  const sendMessage = () => {
+    if (isAuthorised) {
+      if (message !== "" || fileImage !== "") {
+        setPost({
+          ...post,
+          time: Clock().toString(),
+          id_salon: selectedIndex + 1,
+          id_user: userIdCourant,
+        });
+        uploadPhotoFirebase();
+        fetchPost();
+      } else return <Spinner size={120} />;
+    } else showError(err, "Autorisation requise");
   };
+
+  useEffect(() => {
+    if (newPostId) {
+      enqueueSnackbar("Le post est créé avec succès", {
+        variant: "success",
+      });
+    }
+  }, [newPostId]);
 
   const filter = (item, index) => {
     setSelectedIndex(index);
@@ -140,7 +154,7 @@ const Blog = () => {
                 selected={selectedIndex === index}
                 onClick={() => filter(item, index)}
                 sx={{
-                  "&": {
+                  "&, &.Mui-selected": {
                     backgroundColor:
                       item.id === 1
                         ? "colorRed.main"
@@ -164,19 +178,15 @@ const Blog = () => {
         <Spinner />
       ) : (
         <S.GridCadre idSalon={selectedIndex + 1}>
-          {postdata?.map((item) => (
-            <div key={item.id}>
-              <BlockWall dataBlock={item} />
-            </div>
-          ))}
+          {postdata
+            .filter((el) => el.id_salon === selectedIndex + 1)
+            ?.map((item) => (
+              <div key={item.id}>
+                <BlockWall dataBlock={item} />
+              </div>
+            ))}
         </S.GridCadre>
       )}
-
-      {/* <S.GridCadre>
-        {componentList.map((el, index) => (
-          <div key={index}>{el}</div>
-        ))}
-      </S.GridCadre> */}
       <S.GridSendBox idSalon={selectedIndex + 1}>
         <Box
           component="form"
@@ -219,7 +229,7 @@ const Blog = () => {
             endAdornment: (
               <IconButton
                 component="label"
-                onClick={() => sendMessage(true)}
+                // onClick={() => sendMessage(true)}
                 sx={{
                   display: "flex",
                   justifyContent: "start",
@@ -240,7 +250,7 @@ const Blog = () => {
                   type="file"
                   hidden
                   onChange={handleUpload}
-                  name="[licenseFile]"
+                  name="fileImage"
                 />
               </IconButton>
             ),

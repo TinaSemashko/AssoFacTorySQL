@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
-import * as S from "../header/topbar.styled";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/system/Unstable_Grid";
 import Box from "@mui/system/Box";
 import TextField from "@mui/material/TextField";
-
-// import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -17,19 +14,25 @@ import axios from "../axios";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
 
-export default function FormConnexion() {
+import * as S from "../header/topbar.styled";
+
+const FormConnexion = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const [dataUrl, setDataUrl] = useState("");
-  const [isInscrit, setIsInscrit] = useState(false);
+  const userIdCourant = localStorage.getItem("usrCourant");
+  const userCourantPrenom = localStorage.getItem("usrCourantPrenom");
+
+  const [isInscrit, setIsInscrit] = useState(
+    userIdCourant !== "" && userIdCourant !== undefined
+  );
+  const [userPrenom, setUserPrenom] = useState("");
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // const userIdCourant = localStorage.getItem("usrCourant");
 
   const [userdata, setUserdata] = useState(); //information bd
   const [user, setUser] = useState({
@@ -38,6 +41,11 @@ export default function FormConnexion() {
   }); // information form
 
   const { email, password } = user;
+  console.log("isInscrit " + isInscrit);
+
+  useEffect(() => {
+    if (isInscrit) setUserPrenom(userCourantPrenom);
+  }, [userIdCourant]);
 
   const onInputChange = (event) => {
     setUser({ ...user, [event.target?.name]: event.target?.value });
@@ -68,20 +76,46 @@ export default function FormConnexion() {
   };
 
   const getUser = async () => {
+    console.log("isInscrit " + isInscrit);
     if (isInscrit) {
-      localStorage.setItem("usrCourant", userdata.Id);
+      localStorage.setItem("usrCourant", "");
+      localStorage.setItem("usrCourantPrenom", "");
+      setDataUrl("");
       setIsInscrit(false);
     } else fetchGet();
   };
 
   useEffect(() => {
     if (userdata) {
-      localStorage.setItem("usrCourant", userdata.Id);
+      setUserPrenom(userdata.prenom);
+      localStorage.setItem("usrCourant", userdata.id);
+      localStorage.setItem("usrCourantPrenom", userdata.prenom);
       setIsInscrit(true);
-      console.log("userIdCourant " + userdata.Id);
       setDataUrl(`data:image/jpeg;base64,${userdata.photo.slice(20)}`);
-    } else setIsInscrit(false);
+    }
   }, [userdata]);
+
+  const fetchGetUserById = async () => {
+    const request = {
+      params: {
+        id: userIdCourant,
+      },
+    };
+    await axios
+      .get(`getuserbyid`, request)
+      .then((response) => {
+        setUserdata(response.data.results[0]);
+      })
+      .catch((err) => {
+        showError(err);
+      });
+  };
+
+  useEffect(() => {
+    if (isInscrit && !userdata) {
+      fetchGetUserById();
+    }
+  }, [userIdCourant]);
 
   return (
     <S.CContainer>
@@ -171,7 +205,7 @@ export default function FormConnexion() {
                       </Box>
                     </S.InputContainer>
                     <S.Prenom isInscrit={isInscrit}>
-                      {userdata ? userdata.prenom : ""}
+                      {isInscrit ? userPrenom : ""}
                     </S.Prenom>
 
                     <S.ButtonLogin
@@ -202,4 +236,6 @@ export default function FormConnexion() {
       </Box>
     </S.CContainer>
   );
-}
+};
+
+export default FormConnexion;

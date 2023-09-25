@@ -8,7 +8,7 @@ const Footer = () => {
     <S.MainContainer>
       <S.FooterContent>
         <S.FooterLinks>
-          <ul class="contact-list">
+          <ul className="contact-list">
             <span style={{ color: "white" }}>Nous Contacter:</span>
 
             <a href="/">

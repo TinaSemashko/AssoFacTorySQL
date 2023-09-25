@@ -30,3 +30,15 @@ export const createNewUser = (model) => async (req, res) => {
 
   res.send({ results: [userId] });
 };
+
+export const getUserById = (model) => async (req, res) => {
+  const { id } = req.query;
+
+  const user = await model.getUserById(id);
+
+  if (!user) {
+    return res.status(404).send({ message: "User doesn't existe" });
+  }
+
+  res.send({ results: [user] });
+};

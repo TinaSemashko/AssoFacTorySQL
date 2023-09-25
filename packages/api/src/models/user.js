@@ -14,7 +14,12 @@ export const getUsers = async () => {
 
 export const getUser = async (email, password) => {
   const results = await knex(table)
-    .select(knex.raw("ENCODE(photo, 'base64') as photo"), "prenom", "email")
+    .select(
+      knex.raw("ENCODE(photo, 'base64') as photo"),
+      "prenom",
+      "email",
+      "id"
+    )
     .where({ email, password });
 
   if (results && results.length) {
@@ -25,7 +30,14 @@ export const getUser = async (email, password) => {
 };
 
 export const getUserById = async (id) => {
-  const results = await knex(table).select("*").where({ id });
+  const results = await knex(table)
+    .select(
+      knex.raw("ENCODE(photo, 'base64') as photo"),
+      "prenom",
+      "email",
+      "id"
+    )
+    .where({ id });
 
   if (results && results.length) {
     return results[0];
