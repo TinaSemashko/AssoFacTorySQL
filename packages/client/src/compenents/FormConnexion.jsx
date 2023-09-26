@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Grid from "@mui/system/Unstable_Grid";
 import Box from "@mui/system/Box";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,6 +10,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { FormControl, FormGroup } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Validate, ValidationGroup } from "mui-validate";
 import Avatar from "@mui/material/Avatar";
 import axios from "../axios";
 import { useSnackbar } from "notistack";
@@ -22,6 +24,11 @@ const FormConnexion = () => {
   const [dataUrl, setDataUrl] = useState("");
   const userIdCourant = localStorage.getItem("usrCourant");
   const userCourantPrenom = localStorage.getItem("usrCourantPrenom");
+  const [validationEmail, setValidationEmail] = useState({
+    valid: false,
+    messages: [],
+    display: false,
+  });
 
   const [isInscrit, setIsInscrit] = useState(
     userIdCourant !== "" && userIdCourant !== undefined
@@ -78,7 +85,14 @@ const FormConnexion = () => {
       localStorage.setItem("usrCourantPrenom", "");
       setDataUrl("");
       setIsInscrit(false);
-    } else fetchGet();
+    } else {
+      console.log(validationEmail.valid);
+      if (validationEmail.valid) fetchGet();
+      else
+        enqueueSnackbar("Corrigez les erreurs dans le formulaire", {
+          variant: "error",
+        });
+    }
   };
 
   useEffect(() => {
@@ -122,113 +136,131 @@ const FormConnexion = () => {
           </Grid>
           <Grid xs={12} md={6}>
             <S.Item>
-              <S.FormContainer>
-                <Box
-                  component="form"
-                  sx={{
-                    "& .MuiTextField-root": {
-                      m: 1,
-                      width: { sm: "30vw", md: "25vw", lg: "15vw" },
-                      borderRadius: "10px",
-                    },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <S.FlexContainer>
-                    <S.InputContainer isinscrit={isInscrit}>
-                      <TextField
-                        required
-                        id="Email"
-                        label="Email"
-                        name="email"
-                        value={email}
-                        placeholder="Entrez votre Email"
-                        color="secondary"
-                        fullWidth
-                        onChange={(event) => onInputChange(event)}
-                        sx={{
-                          backgroundColor: " grey",
-                          boxShadow: " 0px 8px 8px #566573  inset",
+              <ValidationGroup>
+                <>
+                  <S.FormContainer>
+                    <Box
+                      component="form"
+                      sx={{
+                        "& .MuiTextField-root": {
+                          m: 1,
                           width: { sm: "30vw", md: "25vw", lg: "15vw" },
-                        }}
-                      />
-
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                        }}
-                      >
-                        <FormControl
-                          sx={{
-                            m: 1,
-                            width: { sm: "30vw", md: "25vw", lg: "15vw" },
-                            borderRadius: "10px",
-                          }}
-                          variant="outlined"
-                        >
-                          <FormGroup>
-                            <InputLabel
-                              htmlFor="outlined-adornment-password"
-                              color="secondary"
-                            >
-                              Mot de passe
-                            </InputLabel>
-                          </FormGroup>
-                          <FormGroup>
-                            <OutlinedInput
-                              id="outlined-adornment-password"
-                              type={showPassword ? "text" : "password"}
+                          borderRadius: "10px",
+                        },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <S.FlexContainer>
+                        <S.InputContainer isinscrit={isInscrit}>
+                          <Validate
+                            name="email"
+                            regex={[
+                              /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                              <Typography variant="body2" color="secondary">
+                                "Votre email n'est pas valide"
+                              </Typography>,
+                            ]}
+                            after={(result) => setValidationEmail(result)}
+                          >
+                            <TextField
+                              required
+                              id="Email"
+                              label="Email"
+                              name="email"
+                              value={email}
+                              placeholder="Entrez votre Email"
                               color="secondary"
                               fullWidth
-                              autoComplete="new-password"
-                              name="password"
-                              value={password}
                               onChange={(event) => onInputChange(event)}
                               sx={{
                                 backgroundColor: " grey",
                                 boxShadow: " 0px 8px 8px #566573  inset",
-                                borderRadius: "10px",
                                 width: { sm: "30vw", md: "25vw", lg: "15vw" },
                               }}
-                              endAdornment={
-                                <InputAdornment position="end">
-                                  <FormGroup>
-                                    <IconButton
-                                      aria-label="toggle password visibility"
-                                      onClick={handleClickShowPassword}
-                                      onMouseDown={handleMouseDownPassword}
-                                    >
-                                      {showPassword ? (
-                                        <VisibilityOff />
-                                      ) : (
-                                        <Visibility />
-                                      )}
-                                    </IconButton>
-                                  </FormGroup>
-                                </InputAdornment>
-                              }
-                              label="Password"
                             />
-                          </FormGroup>
-                        </FormControl>
-                      </Box>
-                    </S.InputContainer>
-                    <S.Prenom isinscrit={isInscrit}>
-                      {isInscrit ? userPrenom : ""}
-                    </S.Prenom>
-                    <S.ButtonLogin
-                      isinscrit={isInscrit}
-                      variant="contained"
-                      size="medium"
-                      onClick={() => getUser()}
-                    >
-                      {isInscrit ? "LOG OUT" : "LOG IN"}
-                    </S.ButtonLogin>
-                  </S.FlexContainer>
-                </Box>
-              </S.FormContainer>
+                          </Validate>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            <FormControl
+                              sx={{
+                                m: 1,
+                                width: { sm: "30vw", md: "25vw", lg: "15vw" },
+                                borderRadius: "10px",
+                              }}
+                              variant="outlined"
+                            >
+                              <FormGroup>
+                                <InputLabel
+                                  htmlFor="outlined-adornment-password"
+                                  color="secondary"
+                                >
+                                  Mot de passe
+                                </InputLabel>
+                              </FormGroup>
+                              <FormGroup>
+                                <OutlinedInput
+                                  id="outlined-adornment-password"
+                                  type={showPassword ? "text" : "password"}
+                                  color="secondary"
+                                  fullWidth
+                                  autoComplete="new-password"
+                                  name="password"
+                                  value={password}
+                                  onChange={(event) => onInputChange(event)}
+                                  sx={{
+                                    backgroundColor: " grey",
+                                    boxShadow: " 0px 8px 8px #566573  inset",
+                                    borderRadius: "10px",
+                                    width: {
+                                      sm: "30vw",
+                                      md: "25vw",
+                                      lg: "15vw",
+                                    },
+                                  }}
+                                  endAdornment={
+                                    <InputAdornment position="end">
+                                      <FormGroup>
+                                        <IconButton
+                                          aria-label="toggle password visibility"
+                                          onClick={handleClickShowPassword}
+                                          onMouseDown={handleMouseDownPassword}
+                                        >
+                                          {showPassword ? (
+                                            <VisibilityOff />
+                                          ) : (
+                                            <Visibility />
+                                          )}
+                                        </IconButton>
+                                      </FormGroup>
+                                    </InputAdornment>
+                                  }
+                                  label="Password"
+                                />
+                              </FormGroup>
+                            </FormControl>
+                          </Box>
+                        </S.InputContainer>
+                        <S.Prenom isinscrit={isInscrit}>
+                          {isInscrit ? userPrenom : ""}
+                        </S.Prenom>
+                        <S.ButtonLogin
+                          isinscrit={isInscrit}
+                          variant="contained"
+                          size="medium"
+                          onClick={() => getUser()}
+                        >
+                          {isInscrit ? "LOG OUT" : "LOG IN"}
+                        </S.ButtonLogin>
+                      </S.FlexContainer>
+                    </Box>
+                  </S.FormContainer>
+                </>
+              </ValidationGroup>
             </S.Item>
           </Grid>
         </Grid>
