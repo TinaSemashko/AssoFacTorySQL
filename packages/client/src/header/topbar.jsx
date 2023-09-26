@@ -96,6 +96,7 @@ export default function DrawerAppBar() {
         textAlign: "center",
         background:
           "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
+        height: "100%",
       }}
     >
       <S.CloseIconStyle>
@@ -215,11 +216,9 @@ export default function DrawerAppBar() {
                 alt="Logo"
                 style={{ width: "54px", height: "46px", marginRight: "40px" }}
               />
-
               <Typography
                 variant="h4"
                 fontFamily='"Wallpoet", cursive'
-                color="#5E0202"
                 onClick={() => navigate("/")}
                 sx={{
                   my: 2,
@@ -227,6 +226,7 @@ export default function DrawerAppBar() {
                   flexGrow: 1,
                   display: { xs: "none", sm: "block" },
                   cursor: "pointer",
+                  color: "colorMaroon.main",
                 }}
               >
                 AssoFacTory
@@ -263,7 +263,7 @@ export default function DrawerAppBar() {
                 sx={{
                   "& .MuiDrawer-paper": {
                     boxSizing: "border-box",
-                    width: drawerWidth,
+                    width: { sm: "100%", md: drawerWidth },
                   },
                 }}
               >

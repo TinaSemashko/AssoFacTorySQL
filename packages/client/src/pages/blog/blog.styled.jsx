@@ -33,7 +33,7 @@ export const GridCadre = styled("div")(
   };
 
   @media (max-width: 750px) {
-    width: 100%;
+    // width: 100%;
   }
 `
 );
@@ -63,7 +63,7 @@ export const GridSendBox = styled("div")(
   }
 
   @media (max-width: 750px) {
-    width: 100%;
+    // width: 100%;
   }
 `
 );
@@ -90,7 +90,6 @@ export const GridImg = styled("div")`
 
 export const Img = styled("img")`
   width: 80%;
-  /* height: 100vh; */
   font-family: "Alkatra", cursive;
   grid-column: 1;
   grid-row: 1;
@@ -139,4 +138,6 @@ export const MyButton = styled(ListItemButton)`
   -webkit-text-stroke-color: black;
   justify-content: center;
   align-items: center;
+  @media (max-width: 750px) {
+  }
 `;
