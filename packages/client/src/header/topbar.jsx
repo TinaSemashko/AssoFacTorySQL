@@ -177,7 +177,7 @@ export default function DrawerAppBar() {
           </ListItem>
         ))}
       </List>
-    </Box>
+    </Box> 
   );
   return (
     <S.Container>
@@ -225,7 +225,7 @@ export default function DrawerAppBar() {
                   my: 2,
                   opacity: 0.8,
                   flexGrow: 1,
-                  display: { xs: "none", sm: "block" },
+                  display: {sm: "block" },
                   cursor: "pointer",
                 }}
               >
@@ -276,3 +276,4 @@ export default function DrawerAppBar() {
     </S.Container>
   );
 }
+
