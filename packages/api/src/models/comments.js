@@ -3,7 +3,17 @@ import { knex } from "../../db.js";
 export const table = "comments";
 
 export const getComments = async () => {
-  const results = await knex(table).select("*");
+  const results = await knex(table)
+    .select(
+      "comments.id",
+      "comments.id_post",
+      "comments.message",
+      "comments.time",
+      "users.prenom",
+      "comments.media"
+    )
+    .leftJoin("users", "comments.id_user", "users.id")
+    .orderBy([{ column: "time" }]);
 
   if (results && results.length) {
     return results;

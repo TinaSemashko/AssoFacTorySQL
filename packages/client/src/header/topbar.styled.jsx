@@ -104,8 +104,8 @@ export const FlexContainer = styled("div")`
 `;
 
 export const InputContainer = styled("div")(
-  ({ isInscrit }) => `
-display: ${isInscrit ? "none" : "block"};
+  ({ isinscrit }) => `
+display: ${isinscrit ? "none" : "block"};
 `
 );
 
@@ -114,25 +114,25 @@ export const Inscrivez = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-left: 3rem;
+  align-items: start;
+  margin-left: 1rem;
+  cursor: pointer;
 `;
 
 export const Form = styled("div")`
   color: ${({ theme }) => theme.palette.colorWhite.main};
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 `;
 
 export const LogoText = styled("div")`
   display: flex;
-
   justify-content: center;
   align-items: center;
 `;
 
 export const Prenom = styled("div")(
-  ({ isInscrit, theme }) => `
-  display: ${isInscrit ? "flex" : "none"};
+  ({ isinscrit, theme }) => `
+  display: ${isinscrit ? "flex" : "none"};
   justify-content: center;
   align-items: center;
   border-radius: 20px;
@@ -149,9 +149,9 @@ export const Prenom = styled("div")(
 );
 
 export const ButtonLogin = styled(Button)(
-  ({ isInscrit, theme }) => `
+  ({ isinscrit, theme }) => `
   margin:  1vw;
-  background-color: ${isInscrit ? "transparent" : theme.palette.secondary.main};
+  background-color: ${isinscrit ? "transparent" : theme.palette.secondary.main};
   border: solid black;
   width: 10vw;
   border-radius: 20px;

@@ -110,7 +110,19 @@ export default function DrawerAppBar() {
 
       <S.Form>
         <FormConnexion />
+        <S.Inscrivez>
+          Vous n’avez pas encore de compte!
+          <u
+            onClick={() => {
+              handleDrawerToggle();
+              navigate("/inscription");
+            }}
+          >
+            Inscrivrez-vous ici!
+          </u>
+        </S.Inscrivez>
       </S.Form>
+
       <Divider />
       <Typography
         onClick={() => navigate("/")}

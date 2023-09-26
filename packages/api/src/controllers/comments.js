@@ -10,7 +10,7 @@ export const getAllComments = (model) => async (req, res) => {
 
 export const createNewComment = (model) => async (req, res) => {
   const { data } = req.body;
-  const commentId = await model.createPost(data);
+  const commentId = await model.createComment(data);
 
   if (!commentId) {
     return res.status(404).send({ message: "Something went wrong..." });

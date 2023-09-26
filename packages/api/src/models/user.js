@@ -46,15 +46,6 @@ export const getUserById = async (id) => {
   return null;
 };
 
-// export const putUserAbonnement = async (email) => {
-//   const results =
-//     (await knex) < User > table.update({ abonnement: true }).where({ email });
-
-//   if (results) return results;
-
-//   return null;
-// };
-
 export const createUser = async (data) => {
   const photoBuffer = Buffer.from(data.photo, "base64");
   const results = await knex(table)

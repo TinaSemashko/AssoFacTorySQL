@@ -8,7 +8,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import BlockWall from "../components/blockWall/blockWall";
 import Spinner from "@mui/material/CircularProgress";
 import ListItem from "@mui/material/ListItem";
-import { IconButton, Input } from "@mui/material";
+import { IconButton, Input, FormGroup } from "@mui/material";
 import axios from "../../axios.js";
 import { useSnackbar } from "notistack";
 import Clock from "../../shared/clock";
@@ -21,16 +21,32 @@ const Blog = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [postdata, setPostdata] = useState([{}]);
   const [post, setPost] = useState({});
-  const { id_user, id_salon, message, media, time } = post;
+  const [newPostId, setNewPostrId] = useState(0);
+
+  const [commentsdata, setCommentsdata] = useState([{}]);
+  const [comment, setComment] = useState({});
+  const [newCommentId, setNewCommentId] = useState(0);
+
   const [filterItemsArray, setFilterItemsArray] = useState([{}]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [newPostId, setNewPostrId] = useState(0);
+
   const [fileImage, setFileImage] = useState(null);
 
   const userIdCourant = localStorage.getItem("usrCourant");
   const isAuthorised = userIdCourant !== "" && userIdCourant !== undefined;
 
-  console.log(Clock().toString());
+  ////COMMON///////
+
+  const showError = (err, mess) => {
+    enqueueSnackbar(mess, { variant: "error" });
+    console.error(err);
+  };
+
+  const filter = (item, index) => {
+    setSelectedIndex(index);
+  };
+
+  ////block GET /////////
 
   useEffect(() => {
     const fetchGetSalons = async () => {
@@ -47,24 +63,44 @@ const Blog = () => {
     fetchGetSalons();
   }, []);
 
-  const showError = (err, mess) => {
-    enqueueSnackbar(mess, { variant: "error" });
-    console.error(err);
-  };
-
-  const fetchGet = async () => {
+  const fetchGet = async (endpoint) => {
     await axios
-      .get(`posts`)
+      .get(endpoint)
       .then((response) => {
-        setPostdata(response.data.results[0]);
+        const result = response.data.results[0];
+        if (result)
+          endpoint === `posts` ? setPostdata(result) : setCommentsdata(result);
       })
       .catch((err) => {
-        showError(err, "Il n'y a pas des posts");
+        console.error(err);
       });
   };
 
   useEffect(() => {
-    fetchGet();
+    fetchGet(`posts`);
+  }, [selectedIndex]);
+
+  useEffect(() => {
+    fetchGet(`comments`);
+  }, [selectedIndex]);
+
+  ////block POST /////////
+
+  useEffect(() => {
+    setPost({
+      ...post,
+      time: Clock().toString(),
+      id_salon: selectedIndex + 1,
+      id_user: userIdCourant,
+    });
+  }, [selectedIndex]);
+
+  useEffect(() => {
+    setComment({
+      ...comment,
+      time: Clock().toString(),
+      id_user: userIdCourant,
+    });
   }, [selectedIndex]);
 
   const uploadPhotoFirebase = () => {
@@ -77,16 +113,20 @@ const Blog = () => {
       "user" +
       userIdCourant +
       part1;
-    console.log("fileName " + fileName);
+
     const storageRef = ref(storage, `images/${fileName}`);
     uploadBytes(storageRef, fileImage)
-      .then((snapshot) => {
-        const downloadURL = getDownloadURL(snapshot.ref);
+      .then(async (snapshot) => {
+        const downloadURL = await getDownloadURL(snapshot.ref);
         console.log("downloadURL " + downloadURL);
-        setPost({ ...post, media: downloadURL });
-        enqueueSnackbar("l'image a été ajouté à la bdd", {
-          variant: "success",
-        });
+        if (downloadURL !== "" && downloadURL !== undefined) {
+          enqueueSnackbar("l'image a été ajouté à la bdd", {
+            variant: "success",
+          });
+          console.log("comment?.id_post " + comment?.id_post);
+          if (comment?.id_post) setComment({ ...comment, media: downloadURL });
+          else setPost({ ...post, media: downloadURL });
+        }
       })
       .catch((err) => {
         showError(err, "l'image n'a pas été ajouté à la bdd");
@@ -111,19 +151,34 @@ const Blog = () => {
       });
   };
 
-  const sendMessage = () => {
+  const fetchComment = async () => {
+    const request = {
+      data: comment,
+    };
+    await axios
+      .post(`createcomment`, request)
+      .then((response) => setNewCommentId(response.data.results))
+      .catch((err) => {
+        showError(err, "Le comment n'a pas créé");
+      });
+  };
+
+  const sendMessage = async () => {
     if (isAuthorised) {
-      if (message !== "" || fileImage !== "") {
-        setPost({
-          ...post,
-          time: Clock().toString(),
-          id_salon: selectedIndex + 1,
-          id_user: userIdCourant,
-        });
-        uploadPhotoFirebase();
-        fetchPost();
+      if (post.message !== "" || comment.message !== "" || fileImage) {
+        if (fileImage) await uploadPhotoFirebase();
+        const timeOut = setTimeout(() => {
+          console.log("fileImage " + fileImage);
+          console.log("post.media " + post.media);
+          console.log("comment.media " + comment.media);
+
+          if ((fileImage && (post.media || comment.media)) || !fileImage) {
+            if (comment?.id_post) fetchComment();
+            else fetchPost();
+          }
+        }, 2000);
       } else return <Spinner size={120} />;
-    } else showError(err, "Autorisation requise");
+    } else showError("Autorisation requise", "Autorisation requise");
   };
 
   useEffect(() => {
@@ -134,8 +189,17 @@ const Blog = () => {
     }
   }, [newPostId]);
 
-  const filter = (item, index) => {
-    setSelectedIndex(index);
+  useEffect(() => {
+    if (newCommentId) {
+      enqueueSnackbar("Le comment est créé avec succès", {
+        variant: "success",
+      });
+    }
+  }, [newCommentId]);
+
+  const onInputChange = (e) => {
+    if (comment.id_post) setComment({ ...comment, message: e.target?.value });
+    else setPost({ ...post, message: e.target?.value });
   };
 
   return (
@@ -163,6 +227,7 @@ const Blog = () => {
                         : "colorBlue.main",
 
                     textAlign: "center",
+                    borderRadius: "10px",
                   },
                 }}
               >
@@ -181,40 +246,75 @@ const Blog = () => {
           {postdata
             .filter((el) => el.id_salon === selectedIndex + 1)
             ?.map((item) => (
-              <div key={item.id}>
-                <BlockWall dataBlock={item} />
+              <div>
+                <BlockWall
+                  key={item.id}
+                  dataBlock={item}
+                  idSalon={selectedIndex + 1}
+                />
+                {commentsdata
+                  ? commentsdata
+                      .filter((elem) => elem.id_post === item.id)
+                      .map((itemC) => (
+                        <BlockWall
+                          key={itemC.id}
+                          dataBlock={itemC}
+                          idSalon={selectedIndex + 1}
+                          isComment={true}
+                        />
+                      ))
+                  : ""}
               </div>
             ))}
         </S.GridCadre>
       )}
       <S.GridSendBox idSalon={selectedIndex + 1}>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": {
-              m: 1,
-              width: "45vw",
-              borderRadius: "10px",
-              backgroundColor: "colorWhite.main",
-              boxShadow: " 0px 4px 4px gray inset",
-            },
-          }}
-          noValidate
-          autoComplete="off"
-        >
+        <FormGroup>
           <TextField
             required
-            id="message"
+            id="idPost"
             type="text"
             sx={{
-              backgroundColor: "colorOrangeBlog.main",
+              width: "10vw",
+              backgroundColor: "colorWhite.main",
               boxShadow: " 0px 8px 8px #566573  inset",
             }}
-            placeholder="Ecrivez votre message..."
+            placeholder="№ de post"
             fullWidth
-            onChange={(e) => setPost({ ...post, message: e.target?.value })}
+            onChange={(e) =>
+              setComment({ ...comment, id_post: e.target?.value })
+            }
           />
-        </Box>
+        </FormGroup>
+        <FormGroup>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": {
+                m: 1,
+                width: "45vw",
+                borderRadius: "10px",
+                backgroundColor: "colorWhite.main",
+                boxShadow: " 0px 4px 4px gray inset",
+              },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              required
+              id="message"
+              type="text"
+              sx={{
+                backgroundColor: "colorOrangeBlog.main",
+                boxShadow: " 0px 8px 8px #566573  inset",
+              }}
+              placeholder="Ecrivez votre message..."
+              fullWidth
+              onChange={(e) => onInputChange(e)}
+            />
+          </Box>
+        </FormGroup>
 
         <TextField
           variant="outlined"
@@ -229,7 +329,6 @@ const Blog = () => {
             endAdornment: (
               <IconButton
                 component="label"
-                // onClick={() => sendMessage(true)}
                 sx={{
                   display: "flex",
                   justifyContent: "start",
@@ -245,20 +344,21 @@ const Blog = () => {
                     borderColor: "colorBlack.main",
                   }}
                 />
-                <Input
-                  style={{ display: "none" }}
-                  type="file"
-                  hidden
-                  onChange={handleUpload}
-                  name="fileImage"
-                />
+                <FormGroup>
+                  <Input
+                    style={{ display: "none" }}
+                    type="file"
+                    hidden
+                    onChange={handleUpload}
+                    name="fileImage"
+                  />
+                </FormGroup>
               </IconButton>
             ),
           }}
         />
         <Button
-          name="message"
-          value={message}
+          name="sendmessage"
           onClick={() => sendMessage()}
           sx={{
             color: "colorOrangeBlog.main",

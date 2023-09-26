@@ -2,12 +2,11 @@ import { styled } from "@mui/material/styles";
 import { TimeField } from "@mui/x-date-pickers";
 
 export const MainContainer = styled("div")(
-  ({ idSalon, theme }) => `
-
-  padding: 4vh;
-  width: 55vw;
+  ({ idSalon, theme, isComment }) => `
+  padding-left: ${isComment ? "45vw" : ""};
+  padding-top: 4vh;
+  width: 65vw;
   border-radius: 16px;
-  // box-shadow: 0px 4px 4px grey;
   margin-bottom: 4vh;
   display: flex;
   flex-direction: column;
@@ -42,11 +41,5 @@ export const MyTimeField = styled(TimeField)`
 `;
 
 export const Author = styled("div")`
-  /* width: 20vw;
-  text-align: left; */
-`;
-
-export const Time = styled("div")`
-  /* width: 20vw;
-  text-align: left; */
+  text-align: left;
 `;

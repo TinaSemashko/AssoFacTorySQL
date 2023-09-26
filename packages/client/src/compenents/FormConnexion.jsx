@@ -6,19 +6,17 @@ import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
+import { FormControl, FormGroup } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Avatar from "@mui/material/Avatar";
 import axios from "../axios";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router";
 
 import * as S from "../header/topbar.styled";
 
 const FormConnexion = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const [dataUrl, setDataUrl] = useState("");
@@ -41,7 +39,6 @@ const FormConnexion = () => {
   }); // information form
 
   const { email, password } = user;
-  console.log("isInscrit " + isInscrit);
 
   useEffect(() => {
     if (isInscrit) setUserPrenom(userCourantPrenom);
@@ -76,7 +73,6 @@ const FormConnexion = () => {
   };
 
   const getUser = async () => {
-    console.log("isInscrit " + isInscrit);
     if (isInscrit) {
       localStorage.setItem("usrCourant", "");
       localStorage.setItem("usrCourantPrenom", "");
@@ -139,22 +135,24 @@ const FormConnexion = () => {
                   autoComplete="off"
                 >
                   <S.FlexContainer>
-                    <S.InputContainer isInscrit={isInscrit}>
-                      <TextField
-                        required
-                        id="Email"
-                        label="Email"
-                        name="email"
-                        value={email}
-                        placeholder="Entrez votre Email"
-                        color="secondary"
-                        fullWidth
-                        onChange={(event) => onInputChange(event)}
-                        sx={{
-                          backgroundColor: " grey",
-                          boxShadow: " 0px 8px 8px #566573  inset",
-                        }}
-                      />
+                    <S.InputContainer isinscrit={isInscrit}>
+                      <FormGroup>
+                        <TextField
+                          required
+                          id="Email"
+                          label="Email"
+                          name="email"
+                          value={email}
+                          placeholder="Entrez votre Email"
+                          color="secondary"
+                          fullWidth
+                          onChange={(event) => onInputChange(event)}
+                          sx={{
+                            backgroundColor: " grey",
+                            boxShadow: " 0px 8px 8px #566573  inset",
+                          }}
+                        />
+                      </FormGroup>
                       <Box
                         sx={{
                           display: "flex",
@@ -165,51 +163,57 @@ const FormConnexion = () => {
                           sx={{ m: 1, width: { xs: "30vw", md: "15vw" } }}
                           variant="outlined"
                         >
-                          <InputLabel
-                            htmlFor="outlined-adornment-password"
-                            color="secondary"
-                          >
-                            Mot de passe
-                          </InputLabel>
-                          <OutlinedInput
-                            id="outlined-adornment-password"
-                            type={showPassword ? "text" : "password"}
-                            color="secondary"
-                            fullWidth
-                            autoComplete="new-password"
-                            name="password"
-                            value={password}
-                            onChange={(event) => onInputChange(event)}
-                            sx={{
-                              backgroundColor: " grey",
-                              boxShadow: " 0px 8px 8px #566573  inset",
-                            }}
-                            endAdornment={
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={handleClickShowPassword}
-                                  onMouseDown={handleMouseDownPassword}
-                                >
-                                  {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
-                                    <Visibility />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            }
-                            label="Password"
-                          />
+                          <FormGroup>
+                            <InputLabel
+                              htmlFor="outlined-adornment-password"
+                              color="secondary"
+                            >
+                              Mot de passe
+                            </InputLabel>
+                          </FormGroup>
+                          <FormGroup>
+                            <OutlinedInput
+                              id="outlined-adornment-password"
+                              type={showPassword ? "text" : "password"}
+                              color="secondary"
+                              fullWidth
+                              autoComplete="new-password"
+                              name="password"
+                              value={password}
+                              onChange={(event) => onInputChange(event)}
+                              sx={{
+                                backgroundColor: " grey",
+                                boxShadow: " 0px 8px 8px #566573  inset",
+                              }}
+                              endAdornment={
+                                <InputAdornment position="end">
+                                  <FormGroup>
+                                    <IconButton
+                                      aria-label="toggle password visibility"
+                                      onClick={handleClickShowPassword}
+                                      onMouseDown={handleMouseDownPassword}
+                                    >
+                                      {showPassword ? (
+                                        <VisibilityOff />
+                                      ) : (
+                                        <Visibility />
+                                      )}
+                                    </IconButton>
+                                  </FormGroup>
+                                </InputAdornment>
+                              }
+                              label="Password"
+                            />
+                          </FormGroup>
                         </FormControl>
                       </Box>
                     </S.InputContainer>
-                    <S.Prenom isInscrit={isInscrit}>
+                    <S.Prenom isinscrit={isInscrit}>
                       {isInscrit ? userPrenom : ""}
                     </S.Prenom>
 
                     <S.ButtonLogin
-                      isInscrit={isInscrit}
+                      isinscrit={isInscrit}
                       variant="contained"
                       size="medium"
                       onClick={() => getUser()}
@@ -218,17 +222,6 @@ const FormConnexion = () => {
                     </S.ButtonLogin>
                   </S.FlexContainer>
                 </Box>
-                <S.Inscrivez>
-                  Vous n’avez pas encore de compte!
-                  <u
-                    style={{
-                      cursor: "pointer",
-                    }}
-                    onClick={() => navigate("/inscription")}
-                  >
-                    Inscrivrez-vous ici!
-                  </u>
-                </S.Inscrivez>
               </S.FormContainer>
             </S.Item>
           </Grid>
