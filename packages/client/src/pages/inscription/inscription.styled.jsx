@@ -121,7 +121,7 @@ export const Img2 = styled("img")`
 export const ButtonUpload = styled(Button)`
   && {
     width: 8vw;
-    height: 18vh;
+    height: 14vh;
     border-radius: 100%;
     background-color: "transparent";
   }

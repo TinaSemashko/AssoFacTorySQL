@@ -136,23 +136,22 @@ const FormConnexion = () => {
                 >
                   <S.FlexContainer>
                     <S.InputContainer isinscrit={isInscrit}>
-                      <FormGroup>
-                        <TextField
-                          required
-                          id="Email"
-                          label="Email"
-                          name="email"
-                          value={email}
-                          placeholder="Entrez votre Email"
-                          color="secondary"
-                          fullWidth
-                          onChange={(event) => onInputChange(event)}
-                          sx={{
-                            backgroundColor: " grey",
-                            boxShadow: " 0px 8px 8px #566573  inset",
-                          }}
-                        />
-                      </FormGroup>
+                      <TextField
+                        required
+                        id="Email"
+                        label="Email"
+                        name="email"
+                        value={email}
+                        placeholder="Entrez votre Email"
+                        color="secondary"
+                        fullWidth
+                        onChange={(event) => onInputChange(event)}
+                        sx={{
+                          backgroundColor: " grey",
+                          boxShadow: " 0px 8px 8px #566573  inset",
+                        }}
+                      />
+
                       <Box
                         sx={{
                           display: "flex",
