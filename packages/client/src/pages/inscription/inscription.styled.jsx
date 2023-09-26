@@ -124,5 +124,6 @@ export const ButtonUpload = styled(Button)`
     height: 14vh;
     border-radius: 100%;
     background-color: "transparent";
+    margin: 4%;
   }
 `;
