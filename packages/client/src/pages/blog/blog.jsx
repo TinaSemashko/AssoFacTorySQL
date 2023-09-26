@@ -14,6 +14,7 @@ import { useSnackbar } from "notistack";
 import Clock from "../../shared/clock";
 import storage from "../../service/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Carousel from "./carousel";
 
 import * as S from "./blog.styled";
 
@@ -37,6 +38,10 @@ const Blog = () => {
   const salonCourant = localStorage.getItem("salonCurant");
 
   ////COMMON///////
+
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
   const showError = (err, mess) => {
     enqueueSnackbar(mess, { variant: "error" });
@@ -109,7 +114,7 @@ const Blog = () => {
     });
   }, [selectedIndex]);
 
-  const uploadPhotoFirebase = () => {
+  const uploadPhotoFirebase = async () => {
     const part1 = Math.trunc(Math.random() * 6 + 1).toString();
     const fileName =
       "image_time" +
@@ -183,13 +188,14 @@ const Blog = () => {
             if (comment?.id_post) fetchComment();
             else fetchPost();
           }
-        }, 1000);
+        }, 1500);
       } else return <Spinner size={120} />;
     } else showError("Autorisation requise", "Autorisation requise");
   };
 
   useEffect(() => {
     if (newPostId) {
+      refreshPage();
       enqueueSnackbar("Le post est créé avec succès", {
         variant: "success",
       });
@@ -198,6 +204,7 @@ const Blog = () => {
 
   useEffect(() => {
     if (newCommentId) {
+      refreshPage();
       enqueueSnackbar("Le comment est créé avec succès", {
         variant: "success",
       });
@@ -211,6 +218,7 @@ const Blog = () => {
 
   return (
     <S.MainContainer>
+      <Carousel />
       <S.Filter>
         {filterItemsArray ? (
           filterItemsArray.map((item, index) => (

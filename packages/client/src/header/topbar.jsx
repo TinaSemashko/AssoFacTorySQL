@@ -96,7 +96,7 @@ export default function DrawerAppBar() {
         textAlign: "center",
         background:
           "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
-        height: "100%",
+        height: { sm: "100%", md: "200vh" },
       }}
     >
       <S.CloseIconStyle>

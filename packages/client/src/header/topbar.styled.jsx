@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 
 export const Container = styled("div")`
   overflow-x: hidden;
-  /* height: 100vh; */
 `;
 
 export const CloseIconStyle = styled("div")`
@@ -127,6 +126,7 @@ export const Inscrivez = styled("div")`
   justify-content: center;
   align-items: start;
   margin-left: 1rem;
+  margin-top: 2rem;
   cursor: pointer;
 `;
 
