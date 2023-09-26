@@ -27,7 +27,7 @@ import * as S from "./topbar.styled";
 const menuItemsArray = [
   "accueil",
   "blog",
-  "STRIP PLASTIC ",
+  "STRIP PLASTIC",
   "PLATEAU",
   "KINE et YOGA",
 ];
@@ -152,7 +152,19 @@ export default function DrawerAppBar() {
             >
               <ListItemText
                 primary={item}
-                onClick={() => navigateItem(item)}
+                onClick={() => {
+                  console.log(item);
+                  if (item === "STRIP PLASTIC") {
+                    localStorage.setItem("salonCurant", 1);
+                    navigateItem("blog");
+                  } else if (item === "PLATEAU") {
+                    localStorage.setItem("salonCurant", 2);
+                    navigateItem("blog");
+                  } else if (item === "KINE et YOGA") {
+                    localStorage.setItem("salonCurant", 3);
+                    navigateItem("blog");
+                  } else navigateItem(item);
+                }}
                 primaryTypographyProps={{
                   fontSize: index > 1 ? "15px" : "30px",
                   textTransform: "capitalize",

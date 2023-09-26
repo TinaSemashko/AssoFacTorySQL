@@ -34,6 +34,7 @@ const Blog = () => {
 
   const userIdCourant = localStorage.getItem("usrCourant");
   const isAuthorised = userIdCourant !== "" && userIdCourant !== undefined;
+  const salonCourant = localStorage.getItem("salonCurant");
 
   ////COMMON///////
 
@@ -45,6 +46,11 @@ const Blog = () => {
   const filter = (item, index) => {
     setSelectedIndex(index);
   };
+
+  useEffect(() => {
+    if (salonCourant !== undefined && salonCourant !== 0)
+      setSelectedIndex(salonCourant - 1);
+  }, []);
 
   ////block GET /////////
 
