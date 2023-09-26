@@ -55,32 +55,19 @@ export let theme = createTheme({
       main: "#8C689D",
     },
   },
-  //background: linear-gradient(180deg, rgba(220, 80, 2, 0.4624) 43.23%, rgba(155, 37, 37, 0) 100%);
-  //background: linear-gradient(
-  //  180deg,
-  //  ${({ theme }) => theme.palette.colorOrange04624.main} 43.23%,
-  //  ${({ theme }) => theme.palette.colorWhite.main} 100%
-  //);
-
-  //background: linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%);
-  //background: linear-gradient(
-  //  180deg,
-  //  ${({ theme }) => theme.palette.colorMaroonFonce.main} 13.54%,
-  //  ${({ theme }) => theme.palette.colorOrange087.main} 57.29%,
-  //  ${({ theme }) => theme.palette.colorBrown.main} 100%
-  //);
 
   typography: {
     h1: {
       fontFamily: "Wallpoet,cursive",
-      // fontSize: "15rem",
     },
     h2: {
       fontFamily: "Kiwi Maru,serif",
-      // fontSize: "8rem",
     },
     h3: {
       fontFamily: "Kiwi Maru,serif",
+      "@media (max-width:750px)": {
+        fontSize: "15px",
+      },
     },
 
     body1: {

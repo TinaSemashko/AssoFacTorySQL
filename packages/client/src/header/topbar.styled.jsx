@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 
 export const Container = styled("div")`
   overflow-x: hidden;
+  /* height: 100vh; */
 `;
 
 export const CloseIconStyle = styled("div")`
@@ -60,6 +61,10 @@ export const Img = styled("img")`
   height: 100%;
 `;
 
+export const LogoStyle = styled("img")`
+  width: "10px";
+`;
+
 export const CContainer = styled("div")`
   width: 100%;
 
@@ -81,14 +86,18 @@ export const Item = styled("div")`
 `;
 
 export const FormContainer = styled("div")`
-  padding-top: 25vh;
+  padding-top: 17vh;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-evenly;
   height: 10vh;
-  padding-bottom: 15vh;
+  padding-bottom: 10vh;
   color: ${({ theme }) => theme.palette.colorWhite.main};
+
+  @media (max-width: 750px) {
+    padding-top: 7vh;
+  }
 `;
 
 export const FlexContainer = styled("div")`
@@ -99,7 +108,9 @@ export const FlexContainer = styled("div")`
   border-radius: 20px;
 
   @media (max-width: 750px) {
-    width: 80vw;
+    width: 40vw;
+    align-items: start;
+    padding-top: 2vh;
   }
 `;
 
@@ -144,7 +155,12 @@ export const Prenom = styled("div")(
   padding-bottom: 0.5vh;
   padding-right: 1vw;
   padding-left: 1vw;
-  min-width: 10vw;
+  min-width: 15vw;
+
+  @media (max-width: 750px) {
+   width: 30vw;
+   margin-left: 1.5vw;
+  }
 `
 );
 
@@ -153,9 +169,15 @@ export const ButtonLogin = styled(Button)(
   margin:  1vw;
   background-color: ${isinscrit ? "transparent" : theme.palette.secondary.main};
   border: solid black;
-  width: 10vw;
+  width: 15vw;
+  min-width: 15vw;
   border-radius: 20px;
   color: ${theme.palette.colorBlack.main};
+
+@media (max-width: 750px) {
+   width: 30vw;
+  }
+
 `
 );
 
@@ -163,5 +185,5 @@ export const PrenomPhoto = styled("div")`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 20vw;
+  width: 30vw;
 `;

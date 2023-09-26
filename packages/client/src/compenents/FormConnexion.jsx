@@ -127,7 +127,8 @@ const FormConnexion = () => {
                   component="form"
                   sx={{
                     "& .MuiTextField-root": {
-                      width: { xs: "30vw", md: "15vw" },
+                      m: 1,
+                      width: { sm: "30vw", md: "25vw", lg: "15vw" },
                       borderRadius: "10px",
                     },
                   }}
@@ -149,6 +150,7 @@ const FormConnexion = () => {
                         sx={{
                           backgroundColor: " grey",
                           boxShadow: " 0px 8px 8px #566573  inset",
+                          width: { sm: "30vw", md: "25vw", lg: "15vw" },
                         }}
                       />
 
@@ -159,7 +161,11 @@ const FormConnexion = () => {
                         }}
                       >
                         <FormControl
-                          sx={{ m: 1, width: { xs: "30vw", md: "15vw" } }}
+                          sx={{
+                            m: 1,
+                            width: { sm: "30vw", md: "25vw", lg: "15vw" },
+                            borderRadius: "10px",
+                          }}
                           variant="outlined"
                         >
                           <FormGroup>
@@ -183,6 +189,8 @@ const FormConnexion = () => {
                               sx={{
                                 backgroundColor: " grey",
                                 boxShadow: " 0px 8px 8px #566573  inset",
+                                borderRadius: "10px",
+                                width: { sm: "30vw", md: "25vw", lg: "15vw" },
                               }}
                               endAdornment={
                                 <InputAdornment position="end">
@@ -210,7 +218,6 @@ const FormConnexion = () => {
                     <S.Prenom isinscrit={isInscrit}>
                       {isInscrit ? userPrenom : ""}
                     </S.Prenom>
-
                     <S.ButtonLogin
                       isinscrit={isInscrit}
                       variant="contained"

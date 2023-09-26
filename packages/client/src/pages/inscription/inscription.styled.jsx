@@ -27,6 +27,11 @@ export const Item = styled("div")`
     width: 50vw;
     height: 100vh;
     object-fit: cover;
+
+    @media (max-width: 750px) {
+      width: 100vw;
+      height: 100%;
+    }
   }
 
   @media (max-width: 750px) {
@@ -125,5 +130,10 @@ export const ButtonUpload = styled(Button)`
     border-radius: 100%;
     background-color: "transparent";
     margin: 4%;
+
+    @media (max-width: 750px) {
+      width: 10vw;
+      height: 10vh;
+    }
   }
 `;

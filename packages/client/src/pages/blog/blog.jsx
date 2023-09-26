@@ -282,9 +282,10 @@ const Blog = () => {
             id="idPost"
             type="text"
             sx={{
-              width: "10vw",
+              width: { xs: "3vw", sm: "5vw", md: "5vw", lg: "10vw" },
               backgroundColor: "colorWhite.main",
               boxShadow: " 0px 8px 8px #566573  inset",
+              ml: { xs: "2vw", sm: "2vw", md: "0vw", lg: "0vw" },
             }}
             placeholder="№ de post"
             fullWidth
@@ -347,7 +348,7 @@ const Blog = () => {
                   sx={{
                     color: "colorBlack.main",
                     borderRadius: "50%",
-                    fontSize: "4rem",
+                    fontSize: { xs: "10vw", sm: "10vw", md: "8vw", lg: "4vw" },
                     borderColor: "colorBlack.main",
                   }}
                 />
@@ -371,7 +372,7 @@ const Blog = () => {
             color: "colorOrangeBlog.main",
             borderRadius: "50px",
             width: "1vw",
-            fontSize: "4rem",
+            fontSize: { xs: "10vw", sm: "10vw", md: "8vw", lg: "4vw" },
           }}
         >
           <SendRoundedIcon
