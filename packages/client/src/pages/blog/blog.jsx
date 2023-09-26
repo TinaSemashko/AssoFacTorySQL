@@ -130,7 +130,8 @@ const Blog = () => {
             variant: "success",
           });
           console.log("comment?.id_post " + comment?.id_post);
-          if (comment?.id_post) setComment({ ...comment, media: downloadURL });
+          if (comment?.id_post !== undefined && comment?.id_post !== 0)
+            setComment({ ...comment, media: downloadURL });
           else setPost({ ...post, media: downloadURL });
         }
       })
@@ -173,7 +174,7 @@ const Blog = () => {
     if (isAuthorised) {
       if (post.message !== "" || comment.message !== "" || fileImage) {
         if (fileImage) await uploadPhotoFirebase();
-        const timeOut = setTimeout(() => {
+        setTimeout(() => {
           console.log("fileImage " + fileImage);
           console.log("post.media " + post.media);
           console.log("comment.media " + comment.media);
@@ -182,7 +183,7 @@ const Blog = () => {
             if (comment?.id_post) fetchComment();
             else fetchPost();
           }
-        }, 2000);
+        }, 1000);
       } else return <Spinner size={120} />;
     } else showError("Autorisation requise", "Autorisation requise");
   };
