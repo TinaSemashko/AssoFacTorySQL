@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 
 export const MainContainer = styled("div")`
   padding-bottom: 10rem;
-  padding-top: 10rem;
+  /* padding-top: 10rem; */
   text-align: center;
   width: 100vw;
   /* height: 100vh; */
@@ -138,6 +138,15 @@ export const MyButton = styled(ListItemButton)`
   -webkit-text-stroke-color: black;
   justify-content: center;
   align-items: center;
+  @media (max-width: 750px) {
+  }
+`;
+
+export const CarouselContainer = styled("div")`
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 90vh;
   @media (max-width: 750px) {
   }
 `;

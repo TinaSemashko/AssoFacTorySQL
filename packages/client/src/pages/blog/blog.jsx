@@ -14,6 +14,7 @@ import { useSnackbar } from "notistack";
 import Clock from "../../shared/clock";
 import storage from "../../service/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Carousel from "./carousel";
 
 import * as S from "./blog.styled";
 
@@ -217,6 +218,7 @@ const Blog = () => {
 
   return (
     <S.MainContainer>
+      <Carousel />
       <S.Filter>
         {filterItemsArray ? (
           filterItemsArray.map((item, index) => (
