@@ -66,6 +66,7 @@ export default function DrawerAppBar() {
       .get(`getuserbyid`, request)
       .then((response) => {
         setUserdata(response.data.results[0]);
+        console.log("response.data.results[0] " + response.data.results[0]);
       })
       .catch((err) => {
         showError(err);
@@ -80,8 +81,11 @@ export default function DrawerAppBar() {
   };
 
   useEffect(() => {
-    if (userIdCourant && (!userdata || userdata.id !== userIdCourant))
+    console.log("fetchGet1");
+    if (userIdCourant && (!userdata || userdata.id !== userIdCourant)) {
+      console.log("fetchGet2");
       fetchGet();
+    }
   }, [userIdCourant]);
 
   useEffect(() => {
@@ -96,7 +100,7 @@ export default function DrawerAppBar() {
         textAlign: "center",
         background:
           "linear-gradient(180deg, #BE0000 13.54%, rgba(220, 80, 2, 0.87) 57.29%, #9B2525 100%)",
-        height: { sm: "100%", md: "200vh" },
+        height: { sm: "200vh", md: "200vh" },
       }}
     >
       <S.CloseIconStyle>

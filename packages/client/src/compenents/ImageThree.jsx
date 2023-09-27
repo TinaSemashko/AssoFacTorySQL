@@ -7,7 +7,7 @@ const ImageThree = () => (
   <Parallax className="image" bgImage={StrongManAccueil} strength={800}>
     <div className="content">
       <S.Texts>
-        <span className="img-txt-plateau">LA SALLE DU TEMPS</span>
+        <S.Title>LA SALLE DU TEMPS</S.Title>
         <br />
         <br />
         <br />
