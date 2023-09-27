@@ -148,5 +148,14 @@ export const CarouselContainer = styled("div")`
   width: 100vw;
   height: 90vh;
   @media (max-width: 750px) {
+    height: 60vh;
+  }
+`;
+
+export const ImgCarousel = styled("img")`
+  width: 50vw;
+  height: 70vh;
+  @media (max-width: 750px) {
+    height: 50vh;
   }
 `;

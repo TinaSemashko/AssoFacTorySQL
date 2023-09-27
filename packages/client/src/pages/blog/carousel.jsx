@@ -21,35 +21,18 @@ const Carousel = () => {
     <S.CarouselContainer>
       <Slider {...settings}>
         <div>
-          <img
-            src={YogaCarousel}
-            alt="YogaCarousel"
-            width="cover"
-            height="600rem"
-          />
+          <S.ImgCarousel src={YogaCarousel} alt="YogaCarousel" />
         </div>
         <div>
-          <img
-            src={StrongWomenCarousel}
-            alt="StrongWomenCarousel"
-            width="800rem"
-            height="600rem"
-          />
+          <S.ImgCarousel src={StrongWomenCarousel} alt="StrongWomenCarousel" />
         </div>
         <div>
-          <img
-            src={DetenteCarousel}
-            alt="DetenteCarousel"
-            width="800rem"
-            height="600rem"
-          />
+          <S.ImgCarousel src={DetenteCarousel} alt="DetenteCarousel" />
         </div>
         <div>
-          <img
+          <S.ImgCarousel
             src={StripPlasticCarousel}
             alt="StripPlasticCarousel"
-            width="800rem"
-            height="600rem"
           />
         </div>
       </Slider>
