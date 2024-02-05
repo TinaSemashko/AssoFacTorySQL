@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e6c13ad2.css",
+    "main.js": "/static/js/main.399d4d85.js",
+    "static/js/337.b466ddae.chunk.js": "/static/js/337.b466ddae.chunk.js",
+    "static/css/957.732bd542.chunk.css": "/static/css/957.732bd542.chunk.css",
+    "static/js/957.367acf24.chunk.js": "/static/js/957.367acf24.chunk.js",
+    "static/js/730.2397ae73.chunk.js": "/static/js/730.2397ae73.chunk.js",
+    "static/js/496.38d95697.chunk.js": "/static/js/496.38d95697.chunk.js",
+    "static/js/449.88e30f11.chunk.js": "/static/js/449.88e30f11.chunk.js",
+    "static/media/videoInscription.mp4": "/static/media/videoInscription.b70f14d9a7b9126981ce.mp4",
+    "static/media/VideoAccueil.mp4": "/static/media/VideoAccueil.2a0dddaad422ae1babea.mp4",
+    "static/media/StripPlasticAccueil.jpg": "/static/media/StripPlasticAccueil.33fd30a80e0b62251333.jpg",
+    "static/media/Logo.gif": "/static/media/Logo.e18eaa3127bdd155bece.gif",
+    "static/media/StrongWomenCarousel.jpg": "/static/media/StrongWomenCarousel.9aa01ff35e93e63a7b4f.jpg",
+    "static/media/YogaAccueil.jpg": "/static/media/YogaAccueil.a0f9e5a8bde8a8a40c44.jpg",
+    "static/media/imgBlog.jpg": "/static/media/imgBlog.488e883316d21a2e8cfd.jpg",
+    "static/media/StrongManAccueil.jpg": "/static/media/StrongManAccueil.77905da3a70020006f5e.jpg",
+    "static/media/YogaCarousel.jpg": "/static/media/YogaCarousel.266ce270defec5804f13.jpg",
+    "static/media/DetenteCarousel.jpg": "/static/media/DetenteCarousel.b33a1b85d126dcb36200.jpg",
+    "static/media/DetenteAccueil.jpg": "/static/media/DetenteAccueil.d87f128cd6a750602ce8.jpg",
+    "static/media/StripPlasticCarousel.jpg": "/static/media/StripPlasticCarousel.831f0f3914e70c363461.jpg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
+    "main.399d4d85.js.map": "/static/js/main.399d4d85.js.map",
+    "337.b466ddae.chunk.js.map": "/static/js/337.b466ddae.chunk.js.map",
+    "957.732bd542.chunk.css.map": "/static/css/957.732bd542.chunk.css.map",
+    "957.367acf24.chunk.js.map": "/static/js/957.367acf24.chunk.js.map",
+    "730.2397ae73.chunk.js.map": "/static/js/730.2397ae73.chunk.js.map",
+    "496.38d95697.chunk.js.map": "/static/js/496.38d95697.chunk.js.map",
+    "449.88e30f11.chunk.js.map": "/static/js/449.88e30f11.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.399d4d85.js"
+  ]
+}

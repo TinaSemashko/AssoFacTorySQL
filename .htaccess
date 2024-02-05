@@ -1,0 +1,31 @@
+# Désactiver le listing des répertoires
+Options -Indexes
+
+# Rediriger www vers non-www (ou vice versa)
+# Rediriger http vers https
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://votre-domaine.com%{REQUEST_URI} [L,R=301]
+
+# Gestion des erreurs personnalisées
+ErrorDocument 404 /erreur-404.html
+ErrorDocument 500 /erreur-500.html
+
+# Activer la compression Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript application/json application/rss+xml application/atom_xml application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon
+</IfModule>
+
+# Empêcher l'affichage des fichiers de configuration
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Activer les en-têtes de sécurité
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
