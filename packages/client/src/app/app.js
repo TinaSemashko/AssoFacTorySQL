@@ -69,6 +69,12 @@ export let theme = createTheme({
         fontSize: "15px",
       },
     },
+    h4: {
+      fontFamily: "Kiwi Maru,serif",
+      "@media (max-width:750px)": {
+        fontSize: "10px",
+      },
+    },
 
     body1: {
       fontFamily: "Kiwi Maru,serif",

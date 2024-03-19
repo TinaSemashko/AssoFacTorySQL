@@ -135,9 +135,11 @@ const Blog = () => {
             variant: "success",
           });
           console.log("comment?.id_post " + comment?.id_post);
-          if (comment?.id_post !== undefined && comment?.id_post !== 0)
-            setComment({ ...comment, media: downloadURL });
-          else setPost({ ...post, media: downloadURL });
+          setTimeout(() => {
+            if (comment?.id_post !== undefined && comment?.id_post !== 0)
+              setComment({ ...comment, media: downloadURL });
+            else setPost({ ...post, media: downloadURL });
+          }, 1000);
         }
       })
       .catch((err) => {

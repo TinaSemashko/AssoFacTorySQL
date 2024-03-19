@@ -24,16 +24,31 @@ export const MainContainer = styled("div")`
     letter-spacing: 30px;
     z-index: 100;
     mix-blend-mode: difference;
+
+    @media (max-width: 750px) {
+      font-size: 2vh;
+      letter-spacing: 30px;
+      margin-bottom: 20rem;
+      white-space: nowrap;
+    }
   }
-  .content span.img-txt-plateau {
-    background-color: #b4f573;
+  .content .img-txt-plateau {
+    /* background-color: #b4f573;
     text-transform: uppercase;
     color: #de9a5a;
     padding: 1rem;
     font-size: 1.5rem;
     letter-spacing: 30px;
     z-index: 100;
-    mix-blend-mode: difference;
+    mix-blend-mode: difference; */
+    /* @media (max-width: 750px) {
+      font-size: 1vh;
+      letter-spacing: 20px;
+      margin-bottom: 20rem;
+      white-space: nowrap;
+      margin-left: 50rem;
+      margin-right: 50rem;
+    } */
   }
 
   .content span.img-txt-yoga {
@@ -86,14 +101,40 @@ export const GridContainer = styled("div")`
     text-transform: uppercase;
     color: red;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 5vh;
     letter-spacing: 50px;
     z-index: 100;
     mix-blend-mode: color-dodge;
+    @media (max-width: 750px) {
+      /* width: 30vw;
+      height: 30%; */
+      font-size: 2vh;
+      letter-spacing: 30px;
+      margin-bottom: 20rem;
+    }
   }
 `;
 export const Texts = styled("div")`
   text-align: center;
   margin-left: 20rem;
   margin-right: 20rem;
+
+  @media (max-width: 750px) {
+    font-size: 1vh;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    /* letter-spacing: 30px;
+    margin-bottom: 20rem; */
+  }
+`;
+
+export const Title = styled("div")`
+  background-color: #b4f573;
+  text-transform: uppercase;
+  color: #de9a5a;
+  padding: 1rem;
+  font-size: 1.5rem;
+  letter-spacing: 30px;
+  z-index: 100;
+  mix-blend-mode: difference;
 `;

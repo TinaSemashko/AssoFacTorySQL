@@ -109,7 +109,7 @@ export const FlexContainer = styled("div")`
   @media (max-width: 750px) {
     width: 40vw;
     align-items: start;
-    padding-top: 2vh;
+    padding-top: 13vh;
   }
 `;
 
@@ -126,7 +126,7 @@ export const Inscrivez = styled("div")`
   justify-content: center;
   align-items: start;
   margin-left: 1rem;
-  margin-top: 2rem;
+  margin-top: 6rem;
   cursor: pointer;
 `;
 
